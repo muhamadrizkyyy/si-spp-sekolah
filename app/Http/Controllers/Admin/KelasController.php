@@ -14,7 +14,7 @@ class KelasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public $pages = "Dashboard";
+    public $pages = "Data Kelas";
 
 
     public function index()
