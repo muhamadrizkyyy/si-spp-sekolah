@@ -39,7 +39,7 @@
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         {{-- Data Admin --}}
                         <li class="flex-1">
-                            <a href="#"
+                            <a href="{{ route('admin.index') }}"
                                 class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2  hover:border-purple-500 {{ Request::is('admin/admin') ? 'border-blue-600' : 'border-gray-800' }}">
                                 <i
                                     class="fa fa-users pr-0 md:pr-3 {{ Request::is('admin/admin') ? 'text-blue-600' : '' }}"></i><span
@@ -59,7 +59,7 @@
                         </li>
                         {{-- Data Jurusan --}}
                         <li class="flex-1">
-                            <a href="#"
+                            <a href="{{ route('jurusan.index') }}"
                                 class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white {{ Request::is('admin/jurusan') ? 'border-b-2 border-blue-600' : 'border-gray-800' }} ">
                                 <i
                                     class="fas fa-book pr-0 md:pr-3 {{ Request::is('admin/jurusan') ? 'text-blue-600' : '' }}"></i><span
