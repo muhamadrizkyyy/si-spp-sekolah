@@ -12,4 +12,9 @@ class Jurusan extends Model
     public $table = "jurusan";
     public $primaryKey = "id";
     public $guarded = ["id"];
+
+    public function jurusan_siswa()
+    {
+        return $this->hasMany(Siswa::class, 'jurusan_id', "id");
+    }
 }

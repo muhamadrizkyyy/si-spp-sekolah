@@ -12,4 +12,9 @@ class TahunAjaran extends Model
     public $table = "tahun_ajaran";
     public $primaryKey = "id";
     public $guarded = ["id"];
+
+    public function tahun_ajaran_siswa()
+    {
+        return $this->hasMany(Siswa::class, 'thn_ajaran', 'thn_ajaran');
+    }
 }
