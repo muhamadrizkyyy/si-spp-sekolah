@@ -22,6 +22,7 @@ class CreateSiswasTable extends Migration
             $table->text("alamat")->nullable();
             $table->string("thn_ajaran");
             $table->foreign("thn_ajaran")->references("thn_ajaran")->on("tahun_ajaran")->onUpdate("cascade");
+            $table->string("thn_ajaran_masuk");
             $table->foreignId("kelas_id")->constrained("kelas")->onUpdate("cascade");
             $table->foreignId("jurusan_id")->constrained("jurusan")->onUpdate("cascade");
             $table->timestamps();
