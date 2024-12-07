@@ -86,16 +86,14 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     {{-- <script src="https://cdn.datatables.net/2.1.8/js/dataTables.tailwindcss.js"></script> --}}
 
-    <script>
-        if (session('status')) {
-            alert({{ session('status') }})
-            swal({
-                icon: {{ session('status') }},
-                title: "Oops...",
-                text: "Something went wrong!",
+    @if (session('status'))
+        <script>
+            Swal.fire({
+                icon: "{{ session('status') }}",
+                text: "{{ session('msg') }}",
             });
-        }
-    </script>
+        </script>
+    @endif
 
     <script>
         $('#datatable').DataTable();
