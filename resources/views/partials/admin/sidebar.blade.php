@@ -2,7 +2,7 @@
     <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 mt-12 md:relative z-10 w-full md:w-48 content-center">
         <div
             class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
-            <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
+            <ul class="list-reset flex flex-row md:flex-col md:pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
                 {{-- Dashboard --}}
                 <li class="mr-3 flex-1">
                     <a href="{{ route('dashboardAdmin') }}"
@@ -26,7 +26,7 @@
                 {{-- Datamaster --}}
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group border-b-2 dark:text-white dark:hover:bg-gray-700"
+                        class="md:flex items-center hidden w-full p-2 text-base text-white transition duration-75 rounded-lg group border-b-2 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Datamaster</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -95,7 +95,7 @@
                 {{-- Manajemen Pembayaran --}}
                 <li class="mt-4">
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group border-b-2 dark:text-white dark:hover:bg-gray-700"
+                        class="md:flex items-center w-full p-2 hidden text-base text-white transition duration-75 rounded-lg group border-b-2 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="manajemen_pembayaran" data-collapse-toggle="manajemen_pembayaran">
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Manajemen</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -108,9 +108,10 @@
                     <ul id="manajemen_pembayaran" class="hidden py-2 space-y-2">
                         {{-- Kenaikan Kelas --}}
                         <li class="mr-3 flex-1">
-                            <a href="#"
-                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/kenaikan_siswa') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
-                                <i class="fa fa-envelope pr-0 md:pr-3"></i><span
+                            <a href="{{ route('kenaikan-kelas') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/kenaikan-kelas') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
+                                <i
+                                    class="fa fa-school pr-0 md:pr-3 {{ Request::is('admin/kenaikan-kelas') ? 'text-blue-600' : '' }}"></i><span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Kenaikan
                                     Kelas</span>
                             </a>
@@ -119,7 +120,7 @@
                         <li class="mr-3 flex-1">
                             <a href="#"
                                 class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/pembayaran') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
-                                <i class="fa fa-envelope pr-0 md:pr-3"></i><span
+                                <i class="fa fa-money-bill pr-0 md:pr-3"></i><span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Data
                                     Pembayaran</span>
                             </a>
@@ -128,13 +129,21 @@
                         <li class="mr-3 flex-1">
                             <a href="#"
                                 class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/laporan') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
-                                <i class="fa fa-envelope pr-0 md:pr-3"></i><span
+                                <i class="fa fa-file-invoice-dollar pr-0 md:pr-3"></i><span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Laporan</span>
                             </a>
                         </li>
                     </ul>
                 </li>
 
+                {{-- Dashboard --}}
+                <li class="mr-3 flex-1">
+                    <a href="{{ route('logout') }}"
+                        class="sm:block md:hidden py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/dashboard') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
+                        <i class="fa fa-sign-out-alt pr-0 md:pr-3"></i><span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:hidden">Logout</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
