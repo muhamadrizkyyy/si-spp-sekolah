@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\KenaikanKelasController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\UserController;
@@ -37,5 +38,6 @@ Route::middleware("auth")->prefix("admin")->group(function () {
     Route::resource('jurusan', JurusanController::class);
     Route::resource('tahunAjaran', TahunAjaranController::class);
     Route::resource('siswa', SiswaController::class);
+    Route::get("/kenaikan-kelas", [KenaikanKelasController::class, "index"])->name("kenaikan-kelas");
     Route::get('/logout', [Login::class, "logout"])->name("logout");
 });
