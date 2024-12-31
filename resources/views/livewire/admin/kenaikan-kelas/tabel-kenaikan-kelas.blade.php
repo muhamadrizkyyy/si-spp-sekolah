@@ -120,27 +120,29 @@
                                         @enderror
                                     </td>
                                 </tr>
+                                <tr
+                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                    <td colspan="4"></td>
+                                    <td class="px-6 py-4 text-center">
+                                        <div class="pick_kelas">
+                                            <select id="pick_Kelas" wire:model='pick_all_kelas'
+                                                wire:key='pick-all-kelas'
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option selected>.: Pilih Kelas:.</option>
+                                                @foreach ($data_kelas as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->kode_kelas }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="pick_kelas"
+                                                class="block mb-2 text-xs font-medium text-red-600 dark:text-white">
+                                                Pilih untuk terapkan semua
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
                             @endforeach
-                            <tr
-                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                <td colspan="4"></td>
-                                <td class="px-6 py-4 text-center">
-                                    <div class="pick_kelas">
-                                        <select id="pick_Kelas" wire:model='pick_all_kelas' wire:key='pick-all-kelas'
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option selected>.: Pilih Kelas:.</option>
-                                            @foreach ($data_kelas as $item)
-                                                <option value="{{ $item->id }}">{{ $item->kode_kelas }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="pick_kelas"
-                                            class="block mb-2 text-xs font-medium text-red-600 dark:text-white">
-                                            Pilih untuk terapkan semua
-                                        </label>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
                         @else
                             <tr>
                                 <td colspan="6" class="px-6 py-4 text-center bg-gray-200">Tidak Ada Data Siswa</td>
