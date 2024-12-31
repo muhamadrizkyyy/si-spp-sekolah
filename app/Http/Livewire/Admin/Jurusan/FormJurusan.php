@@ -29,9 +29,9 @@ class FormJurusan extends Component
         ]);
 
         if ($jurusan) {
-            return redirect()->route('jurusan.index')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('jurusan.index')->with("status", "success")->with('msg', 'Data berhasil disimpan');
         } else {
-            return redirect()->back()->with('error', 'Data gagal ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -47,9 +47,9 @@ class FormJurusan extends Component
         ]);
 
         if ($jurusan) {
-            return redirect()->route('jurusan.index')->with('success', 'Data berhasil diupdate');
+            return redirect()->route('jurusan.index')->with("status", "success")->with('msg', 'Data berhasil diupdate');
         } else {
-            return redirect()->back()->with('error', 'Data gagal diupdate');
+            return redirect()->back();
         }
     }
 
