@@ -20,9 +20,13 @@ class CreatePembayaransTable extends Migration
             $table->string("nisn");
             $table->foreign("nisn")->references("nisn")->on("siswa")->onUpdate("cascade");
             $table->integer("jmlh_bulan");
-            $table->float("total_bayar");
+            $table->integer("total_bayar");
             $table->enum("status", ["Pending", "Success", "Failed"]);
-            $table->string("PGToken");
+            $table->string("PGToken")->nullable()->comment("Token untuk pembayaran");
+            $table->string("metode_pembayaran")->nullable();
+            $table->foreign("metode_pembayaran")->references("kode_pembayaran")->on("metode_pembayaran")->onUpdate("cascade");
+            $table->string("thn_ajaran");
+            $table->foreign("thn_ajaran")->references("thn_ajaran")->on("tahun_ajaran")->onUpdate("cascade");
             $table->foreignId("user_id")->constrained("users")->nullable();
             $table->timestamps();
         });

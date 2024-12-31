@@ -27,4 +27,9 @@ class Siswa extends Model
     {
         return $this->belongsTo(TahunAjaran::class, 'thn_ajaran', "thn_ajaran");
     }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'nisn', 'nisn');
+    }
 }
