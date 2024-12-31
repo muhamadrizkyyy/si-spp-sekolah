@@ -26,7 +26,7 @@ class FormKelas extends Component
         $kelas = Kelas::create($this->all());
 
         if ($kelas) {
-            return redirect()->route("kelas.index")->with("status", "success");
+            return redirect()->route("kelas.index")->with("status", "success")->with('msg', 'Data berhasil disimpan');
         }
     }
 
@@ -41,7 +41,9 @@ class FormKelas extends Component
         $kelas->save();
 
         if ($kelas) {
-            return redirect()->route("kelas.index")->with("status", "success");
+            return redirect()->route("kelas.index")->with("status", "success")->with('msg', 'Data berhasil diupdate');
+        } else {
+            return redirect()->back();
         }
     }
 

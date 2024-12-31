@@ -36,9 +36,9 @@ class FormTahunAjaran extends Component
         ]);
 
         if ($tahunAjaran) {
-            return redirect()->route('tahunAjaran.index')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route('tahunAjaran.index')->with("status", "success")->with('msg', 'Data berhasil disimpan');
         } else {
-            return redirect()->back()->with('error', 'Data gagal ditambahkan');
+            return redirect()->back();
         }
     }
 
@@ -56,9 +56,9 @@ class FormTahunAjaran extends Component
         ]);
 
         if ($tahunAjaran) {
-            return redirect()->route('tahunAjaran.index')->with('success', 'Data berhasil diupdate');
+            return redirect()->route('tahunAjaran.index')->with("status", "success")->with('msg', 'Data berhasil diupdate');
         } else {
-            return redirect()->back()->with('error', 'Data gagal diupdate');
+            return redirect()->back();
         }
     }
 
