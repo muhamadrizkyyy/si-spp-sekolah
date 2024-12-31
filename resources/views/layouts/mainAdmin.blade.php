@@ -16,6 +16,9 @@
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
         integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+
+    @yield('style')
+
     @livewireStyles
 </head>
 
@@ -31,7 +34,8 @@
             {{-- Sidebar END --}}
 
 
-            <div id="main" class="main-content w-full bg-gray-100 mt-12 md:mt-4 pb-24 md:pb-1 min-h-screen">
+            <div id="main"
+                class="main-content overflow-hidden w-full bg-gray-100 mt-12 md:mt-4 pb-24 md:pb-1 min-h-screen">
                 @yield('content')
             </div>
         </div>
@@ -83,20 +87,20 @@
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     {{-- <script src="https://cdn.datatables.net/2.1.8/js/dataTables.tailwindcss.js"></script> --}}
 
-    <script>
-        if (session('status')) {
-            alert({{ session('status') }})
-            swal({
-                icon: {{ session('status') }},
-                title: "Oops...",
-                text: "Something went wrong!",
+    @if (session('status'))
+        <script>
+            Swal.fire({
+                icon: "{{ session('status') }}",
+                text: "{{ session('msg') }}",
             });
-        }
-    </script>
+        </script>
+    @endif
 
     <script>
         $('#datatable').DataTable();
     </script>
+
+    @yield('script')
 
     @livewireScripts
 </body>

@@ -11,4 +11,25 @@ class Siswa extends Model
 
     public $table = "siswa";
     public $primaryKey = "id";
+    public $guarded = ["id"];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', "id");
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', "id");
+    }
+
+    public function tahun_ajaran()
+    {
+        return $this->belongsTo(TahunAjaran::class, 'thn_ajaran', "thn_ajaran");
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'nisn', 'nisn');
+    }
 }

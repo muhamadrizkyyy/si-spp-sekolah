@@ -12,4 +12,9 @@ class Kelas extends Model
     public $table = "kelas";
     public $primaryKey = "id";
     public $guarded = ["id"];
+
+    public function anggota_kelas()
+    {
+        return $this->hasMany(Siswa::class, 'kelas_id', 'id');
+    }
 }

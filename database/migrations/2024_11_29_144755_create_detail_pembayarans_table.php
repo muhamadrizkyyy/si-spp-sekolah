@@ -15,8 +15,6 @@ class CreateDetailPembayaransTable extends Migration
     {
         Schema::create('detail_pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->string("thn_ajaran");
-            $table->foreign("thn_ajaran")->references("thn_ajaran")->on("tahun_ajaran")->onUpdate("cascade");
             $table->integer("bln_bayar");
             $table->foreignId("pembayaran_id")->constrained("pembayaran");
             $table->timestamps();
