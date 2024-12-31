@@ -34,7 +34,8 @@
             {{-- Sidebar END --}}
 
 
-            <div id="main" class="main-content w-full bg-gray-100 mt-12 md:mt-4 pb-24 md:pb-1 min-h-screen">
+            <div id="main"
+                class="main-content overflow-hidden w-full bg-gray-100 mt-12 md:mt-4 pb-24 md:pb-1 min-h-screen">
                 @yield('content')
             </div>
         </div>
