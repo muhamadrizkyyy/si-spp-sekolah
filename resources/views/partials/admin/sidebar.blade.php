@@ -118,7 +118,7 @@
                         </li>
                         {{-- Pembayaran --}}
                         <li class="mr-3 flex-1">
-                            <a href="#"
+                            <a href="{{ route('pembayaran') }}"
                                 class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/pembayaran') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
                                 <i class="fa fa-money-bill pr-0 md:pr-3"></i><span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Data
@@ -126,13 +126,36 @@
                             </a>
                         </li>
                         {{-- Laporan --}}
-                        <li class="mr-3 flex-1">
-                            <a href="#"
-                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/laporan') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
-                                <i class="fa fa-file-invoice-dollar pr-0 md:pr-3"></i><span
-                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Laporan</span>
-                            </a>
-                        </li>
+                        <button type="button"
+                            class="md:flex items-center hidden w-full p-2 text-base text-white transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="laporan" data-collapse-toggle="laporan">
+                            <i class="fa fa-file-invoice-dollar pr-0 md:pr-3"></i>
+                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Laporan</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <ul id="laporan" class="hidden ml-7 space-y-2">
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('laporan-persiswa') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/laporan/persiswa') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
+                                    <i class="far fa-circle pr-0 md:pr-3"></i>
+                                    <span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Persiswa</span>
+                                </a>
+                            </li>
+                            <li class="mr-3 flex-1">
+                                <a href="{{ route('laporan-perkelas') }}"
+                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/laporan/perkelas') ? 'border-blue-600' : 'border-gray-800' }} hover:border-purple-500">
+                                    <i class="far fa-circle pr-0 md:pr-3"></i>
+                                    <span
+                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Perkelas</span>
+                                </a>
+                            </li>
+                        </ul>
                     </ul>
                 </li>
 
