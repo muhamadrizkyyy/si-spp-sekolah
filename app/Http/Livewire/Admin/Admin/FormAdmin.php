@@ -40,9 +40,9 @@ class FormAdmin extends Component
         $admin->save();
 
         if ($admin) {
-            return redirect()->route('admin.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('admin.index')->with("status", "success")->with('msg', 'Data berhasil disimpan');
         } else {
-            return redirect()->back()->with('error', 'Data gagal disimpan');
+            return redirect()->back();
         }
     }
 
@@ -63,9 +63,9 @@ class FormAdmin extends Component
         $admin->save();
 
         if ($admin) {
-            return redirect()->route('admin.index')->with('success', 'Data berhasil diupdate');
+            return redirect()->route('admin.index')->with("status", "success")->with('msg', 'Data berhasil diupdate');
         } else {
-            return redirect()->back()->with('error', 'Data gagal diupdate');
+            return redirect()->back();
         }
     }
 
