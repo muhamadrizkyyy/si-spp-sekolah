@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\identitasWeb;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('pages.admin.admin.index', ['pages' => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.admin.index', ['pages' => $this->pages, 'logo' => $logo]);
     }
 
     /**
@@ -22,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.admin.form', ['pages' => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.admin.form', ['pages' => $this->pages, 'logo' => $logo]);
     }
 
     /**

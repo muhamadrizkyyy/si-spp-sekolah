@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\identitasWeb;
 use App\Models\Siswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class SiswaController extends Controller
 
     public function index()
     {
-        return view('pages.admin.siswa.index', ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.siswa.index', ["pages" => $this->pages, "logo" => $logo]);
     }
 
     /**
@@ -23,7 +25,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view("pages.admin.siswa.form", ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.siswa.form", ["pages" => $this->pages, "logo" => $logo]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\identitasWeb;
 use App\Models\Kelas;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
@@ -16,12 +17,14 @@ class LaporanController extends Controller
 
     public function indexPerSiswa()
     {
-        return view('pages.admin.laporan.persiswa.index', ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.laporan.persiswa.index', ["pages" => $this->pages, "logo" => $logo]);
     }
 
     public function indexPerKelas()
     {
-        return view('pages.admin.laporan.perkelas.index', ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.laporan.perkelas.index', ["pages" => $this->pages, "logo" => $logo]);
     }
 
     public function downloadLaporanPerSiswa()

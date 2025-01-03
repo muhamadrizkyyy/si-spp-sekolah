@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\identitasWeb;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class KelasController extends Controller
 
     public function index()
     {
-        return view("pages.admin.kelas.index", ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.kelas.index", ["pages" => $this->pages, "logo" => $logo]);
     }
 
     /**
@@ -29,7 +31,8 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view("pages.admin.kelas.form", ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.kelas.form", ["pages" => $this->pages, "logo" => $logo]);
     }
 
     /**

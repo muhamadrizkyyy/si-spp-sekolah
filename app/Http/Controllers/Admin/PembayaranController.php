@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\identitasWeb;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,9 +11,11 @@ use Illuminate\Http\Request;
 class PembayaranController extends Controller
 {
     public $pages = "Manajemen Pembayaran";
+
     public function index()
     {
-        return view('pages.admin.pembayaran.index', ["pages" => $this->pages]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.pembayaran.index', ["pages" => $this->pages, "logo" => $logo]);
     }
 
     public function cetakNota($no_pembayaran)
