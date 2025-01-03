@@ -9,6 +9,9 @@
     <meta name="author" content="name">
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
+    @isset($logo)
+        <link rel="shortcut icon" href="{{ asset('storage/assets/logo/logo020125788.png') }}" type="image/png">
+    @endisset
     {{-- DataTable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
