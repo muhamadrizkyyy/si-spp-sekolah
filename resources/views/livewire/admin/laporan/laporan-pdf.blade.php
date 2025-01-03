@@ -79,10 +79,10 @@
 
 <body>
     <div class="alamat text-center">
-        <h1 class="text-4xl font-bold"> LAPORAN PEMBAYARAN SPP</h1>
-        <h1 class="text-3xl font-bold my-2"> SMKN 2 MOJOKERTO</h1>
-        <p class="text-sm"> Jalan Pulorejo, Kelurahan Pulorejo ,Kecamatan Prajuritkulon Kota Mojokerto </p>
-        <p class="text-xs"> 0881-960-2056 </p>
+        <h1 class="text-4xl font-bold">LAPORAN PEMBAYARAN SPP</h1>
+        <h1 class="text-4xl font-bold my-2">{{ $identitas_web->nama_institusi }}</h1>
+        <p class="text-sm"> {{ $identitas_web->alamat }} </p>
+        <p class="text-xs"> {{ $identitas_web->no_telp }} | {{ $identitas_web->email }}</p>
     </div>
 
     <table class="info-table">

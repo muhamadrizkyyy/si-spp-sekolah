@@ -44,12 +44,15 @@ class LaporanController extends Controller
         $thn_ajaran_awal = $startYear;
         $thn_ajaran_akhir = $endYear;
 
+        $identitas_web = identitasWeb::first();
+
         $pdf = Pdf::loadView("livewire.admin.laporan.laporan-pdf", [
             "data_pembayaran" => $data_pembayaran,
             "data_siswa" => $data_siswa,
             "thn_ajaran" => session("selected_thn_ajaran"),
             "thn_ajaran_awal" => $thn_ajaran_awal,
-            "thn_ajaran_akhir" => $thn_ajaran_akhir
+            "thn_ajaran_akhir" => $thn_ajaran_akhir,
+            "identitas_web" => $identitas_web,
         ]);
 
         $pdf->setOption('isHtml5ParserEnabled', true);
@@ -62,20 +65,22 @@ class LaporanController extends Controller
 
         $data_siswa = Siswa::where("kelas_id", "=", session("selected_kelas"))->get();
         $kelas = Kelas::where("id", "=", session("selected_kelas"))->first()->kode_kelas;
+        $identitas_web = identitasWeb::first();
 
         //simpan data pembayaran sesuai NISN ke dalam Array
         $data = [];
         foreach ($data_siswa as $key => $value) {
             $data[] = [
                 "siswa" => $value->nama,
-                "pembayaran" => $this->collectDataPembayaran($value->nisn, session("selected_thn_ajaran"))
+                "pembayaran" => $this->collectDataPembayaran($value->nisn, session("selected_thn_ajaran")),
+
             ];
         }
 
         //simpan data siswa dan pembayaran dalam format JSON
         $data_json = json_encode($data, true);
 
-        $pdf = Pdf::loadView("livewire.admin.laporan.laporan-perkelas-pdf", ["data" => $data_json, "kelas" => $kelas, "thn_ajaran" => session("selected_thn_ajaran")]);
+        $pdf = Pdf::loadView("livewire.admin.laporan.laporan-perkelas-pdf", ["data" => $data_json, "kelas" => $kelas, "thn_ajaran" => session("selected_thn_ajaran"), "identitas_web" => $identitas_web]);
 
         $pdf->setOption('isHtml5ParserEnabled', true);
         $pdf->setPaper("A4", "landscape");
