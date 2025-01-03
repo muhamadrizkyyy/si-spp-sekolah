@@ -18,9 +18,9 @@
 <body>
     <div class="alamat text-center mt-10">
         <h1 class="text-4xl font-bold"> BUKTI PEMBAYARAN SPP</h1>
-        <h1 class="text-3xl font-bold my-2"> SMKN 2 MOJOKERTO</h1>
-        <p class="text-sm"> Jalan Pulorejo, Kelurahan Pulorejo ,Kecamatan Prajuritkulon Kota Mojokerto </p>
-        <p class="text-xs"> 0881-960-2056 </p>
+        <h1 class="text-4xl font-bold my-2">{{ $identitas_web->nama_institusi }}</h1>
+        <p class="text-sm"> {{ $identitas_web->alamat }} </p>
+        <p class="text-xs"> {{ $identitas_web->no_telp }} | {{ $identitas_web->email }}</p>
     </div>
 
 
@@ -107,7 +107,7 @@
                     <td class="px-6 py-4">
                         {{ $tgl_bayar }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 text-right">
                         Rp. {{ $nominal_spp }}
                     </td>
                 </tr>
@@ -118,8 +118,8 @@
                     class="text-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     Total
                 </th>
-                <td class="px-6 py-4 font-bold">
-                    Rp. {{ $data_pembayaran->total_bayar }}
+                <td class="px-6 py-4 font-bold text-right">
+                    Rp. {{ number_format($data_pembayaran->total_bayar, 0, ',', '.') }}
                 </td>
             </tr>
         </tbody>

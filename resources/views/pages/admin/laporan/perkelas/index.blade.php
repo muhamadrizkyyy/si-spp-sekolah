@@ -11,7 +11,7 @@
 
     <div class="pt-4">
         <div class="shadow-md sm:rounded-lg px-3 pb-5">
-            <livewire:admin.laporan.tabel-laporan-per-kelas />
+            <livewire:admin.laporan.tabel-laporan-perkelas />
         </div>
     </div>
 @endsection
