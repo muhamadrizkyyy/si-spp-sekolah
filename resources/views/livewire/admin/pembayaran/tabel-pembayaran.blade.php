@@ -54,7 +54,7 @@
                         <button disabled
                             class="bg-white border border-gray-300 text-gray-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">
 
-                            {{ $total_bayar_spp }}
+                            Rp. {{ number_format($total_bayar_spp, 0, ',', '.') }}
                         </button>
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -94,7 +94,7 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($data_pembayaran)
+                @if ($data_pembayaran && $selected_thn_ajaran)
                     @foreach ($data_pembayaran as $index => $pembayaran)
                         @php
                             $indexBulan = $pembayaran->bulan;
@@ -109,12 +109,12 @@
                                     {{ $this->setBulanTahun($thn_ajaran_awal, $indexBulan) }}
                                 @endif
                             </th>
-                            <td class="px-6 py-4">
-                                {{ $pembayaran->no_pembayaran }}
-                            </td>
 
                             {{-- Cari bulan yang sudah terbayar --}}
                             @if ($pembayaran->no_pembayaran != null)
+                                <td class="px-6 py-4">
+                                    {{ $pembayaran->no_pembayaran }}
+                                </td>
                                 <td class="px-6 py-4">
                                     {{ $this->formatDate($pembayaran->tgl_bayar) }}
                                 </td>
@@ -149,6 +149,9 @@
                                     </a>
                                 </td>
                             @else
+                                <td class="px-6 py-4">
+                                    -
+                                </td>
                                 <td class="px-6 py-4">
                                     -
                                 </td>

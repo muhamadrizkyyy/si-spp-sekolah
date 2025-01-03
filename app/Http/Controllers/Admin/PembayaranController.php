@@ -41,9 +41,11 @@ class PembayaranController extends Controller
             }
         }
 
-        $nominal_spp = $data_pembayaran->total_bayar / $data_pembayaran->jmlh_bulan; // Menghitung nominal pembayaran per bulan
+        $identitas_web = identitasWeb::first();
 
-        return view("pages.admin.pembayaran.cetak-nota", compact("data_pembayaran", "pages", "nominal_spp", "thn_ajaran_awal", "thn_ajaran_akhir", "bulan_bayar", "tgl_bayar", "tgl_now"));
+        $nominal_spp = number_format($data_pembayaran->total_bayar / $data_pembayaran->jmlh_bulan, 0, ",", "."); // Menghitung nominal pembayaran per bulan
+
+        return view("pages.admin.pembayaran.cetak-nota", compact("data_pembayaran", "pages", "nominal_spp", "thn_ajaran_awal", "thn_ajaran_akhir", "bulan_bayar", "tgl_bayar", "tgl_now", "identitas_web"));
     }
 
     private function setBulanTahun($y, $m)

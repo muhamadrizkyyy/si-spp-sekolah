@@ -23,7 +23,6 @@ class TabelPembayaran extends Component
     //property untuk menangkap event dari emit component lain / dari frontend (js) secara global
     public $listeners = [
         "changeSelectedSiswa" => "SelectedSiswa",
-        "SelectedThnAjaranFirst" => "updatedSelectedThnAjaran",
     ];
 
     //property untuk menyimpan data pembayaran baru
@@ -38,12 +37,6 @@ class TabelPembayaran extends Component
     {
         $this->data_thn_ajaran = TahunAjaran::orderBy("thn_ajaran", "asc")->get();
         $this->data_kelas = Kelas::orderBy("kode_kelas", "asc")->get();
-
-        foreach ($this->data_thn_ajaran as $key => $item) {
-            if (Carbon::now()->format("Y") == explode("/", $item->thn_ajaran)[0]) {
-                $this->selected_thn_ajaran = $item->thn_ajaran;
-            }
-        }
     }
 
     //method menangani logika ketika pilihan kelas di ubah
@@ -68,8 +61,11 @@ class TabelPembayaran extends Component
     //method menangani logika ketika pilihan tahun ajaran di ubah
     public function updatedSelectedThnAjaran()
     {
-        $tahunAjaran = TahunAjaran::where("thn_ajaran", $this->selected_thn_ajaran)->first();
-        $this->nominal_spp = $tahunAjaran->jumlah_spp;
+        $this->pickBulan = [];
+        if ($this->selected_thn_ajaran) {
+            $tahunAjaran = TahunAjaran::where("thn_ajaran", $this->selected_thn_ajaran)->first();
+            $this->nominal_spp = $tahunAjaran->jumlah_spp;
+        }
 
         // Pecah nilai tahun ajaran yang dipilih menjadi tahun mulai dan tahun akhir
         list($startYear, $endYear) = explode('/', $this->selected_thn_ajaran);
@@ -84,6 +80,7 @@ class TabelPembayaran extends Component
     //method untuk menyimpan data siswa yang dipilih (karena pakai lib select2)
     public function SelectedSiswa($data)
     {
+        $this->pickBulan = [];
         $this->selected_siswa = $data;
 
         $this->collectDataPembayaran();

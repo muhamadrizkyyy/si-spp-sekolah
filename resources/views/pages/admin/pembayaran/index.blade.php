@@ -43,13 +43,6 @@
                 })
             }
 
-            //set value thn_ajaran untuk peroleh nominal spp nya
-            if ($("#thn_ajaran")) {
-                $value_thn_ajaran = $("#thn_ajaran").val();
-                livewire.emit('SelectedThnAjaranFirst', $value_thn_ajaran)
-
-            }
-
             //handling message
             // Livewire.on('showAlert', (status, message) => {
             //     Swal.fire({
