@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\KenaikanKelasController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PembayaranController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\UserController;
@@ -28,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::prefix("admin")->group(function () {
-    Route::get("login", Login::class)->name("login");
+    Route::get("login", Login::class)->name("login")->middleware("guest");
 
     Route::middleware("auth")->group(function () {
         Route::get("/", function () {
@@ -36,6 +37,7 @@ Route::prefix("admin")->group(function () {
         });
 
         Route::get("/dashboard", [DashboardController::class, 'index'])->name("dashboardAdmin");
+        Route::get("/setting", [SettingController::class, "index"])->name("setting");
         Route::resource("kelas", KelasController::class);
         Route::resource('admin', UserController::class);
         Route::resource('jurusan', JurusanController::class);

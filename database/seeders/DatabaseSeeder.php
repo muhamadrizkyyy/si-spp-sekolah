@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TahunAjaranSeeder::class,
             SiswaSeeder::class,
             MetodePembayaranSeeder::class,
+            IdentitasWebSeeder::class,
         ]);
     }
 }

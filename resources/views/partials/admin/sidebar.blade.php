@@ -15,7 +15,7 @@
 
                 {{-- Setting --}}
                 <li class="mr-3 flex-1">
-                    <a href="#"
+                    <a href="{{ route('setting') }}"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 {{ Request::is('admin/setting') ? 'border-blue-600' : 'border-gray-800' }} hover:border-pink-500">
                         <i
                             class="fas fa-cog pr-0 md:pr-3 {{ Request::is('admin/setting') ? 'text-blue-600' : '' }}"></i><span
