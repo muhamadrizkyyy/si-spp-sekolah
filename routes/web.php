@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Siswa\MenuDashboardController;
 use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Auth\Siswa\LoginSiswa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get("/login", LoginSiswa::class)->name("login.siswa");
+
+Route::middleware("checkLoginSiswa")->group(function () {
+    Route::get("/dashboard", [MenuDashboardController::class, "index"])->name("dashboardSiswa");
+    Route::get("/logout", [LoginSiswa::class, "logout"])->name("logout.siswa");
 });
 
 Route::prefix("admin")->group(function () {
