@@ -21,10 +21,7 @@
 
 <body>
     <main>
-        <section
-            class="flex items-center justify-center h-screen {{ isset($pages) ? 'bg-gradient-to-r from-myBlueOcean to-mySkyBlue' : '' }}">
-            {{ $slot }}
-        </section>
+        {{ $slot }}
     </main>
     <script src="{{ asset('js/flowbite.js') }}"></script>
     @livewireScripts
