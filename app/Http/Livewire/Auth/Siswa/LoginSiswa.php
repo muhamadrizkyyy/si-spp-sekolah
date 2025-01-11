@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class LoginSiswa extends Component
 {
-    public $nisn, $tgl_lahir, $logo;
+    public $nisn, $tgl_lahir, $logo, $no_telp;
     public $pages = "Login Siswa";
 
     public function mount()
@@ -20,7 +20,10 @@ class LoginSiswa extends Component
             return redirect()->route("dashboardSiswa");
         }
 
-        $this->logo = identitasWeb::first()->logo;
+        $identitas_web = identitasWeb::first();
+
+        $this->logo = $identitas_web->logo;
+        $this->no_telp = $identitas_web->no_telp;
     }
 
     public function login()
@@ -41,7 +44,7 @@ class LoginSiswa extends Component
             ]);
             return redirect()->route("dashboardSiswa");
         } else {
-            return back()->with("status", "error");
+            return back()->with("status", "error")->with("message", "Kombinasi NISN dan tanggal lahir salah, silahkan coba kembali");
         }
     }
 
