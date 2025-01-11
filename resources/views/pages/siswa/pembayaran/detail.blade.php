@@ -13,159 +13,36 @@
             </div>
             <div class="list-mtd-pembayaran h-[25vh] md:h-[80vh] overflow-y-auto border-2 border-myNavy rounded-xl">
                 <ul class="grid w-full md:grid-rows-2">
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer" required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer"
-                            required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer"
-                            required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="radio" id="bni" name="payment" value="I1" class="hidden peer"
-                            required />
-                        <label for="bni"
-                            class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
-                            <div class="flex gap-x-5">
-                                <div class="w-2/12 self-center">
-                                    <img src="{{ asset('storage/assets/pay-logo/bni.png') }}" alt="logo-bni">
-                                </div>
-                                <div class="info-bank">
-                                    <div class="w-full text-md md:text-lg font-semibold">BNI VA</div>
-                                    <div class="w-full text-sm md:text-base">Menggunakan virtual account BNI</div>
-                                </div>
-                            </div>
-                        </label>
-                    </li>
+                    @foreach ($metodeBayar as $item)
+                        @if ($item->kode_pembayaran == 'CSH')
+                            <?php continue; ?>
+                        @else
+                            <li>
+                                <input type="radio" id="{{ $item->kode_pembayaran }}" name="payment"
+                                    value="{{ $item->kode_pembayaran }}" class="hidden peer" required />
+                                <label for="{{ $item->kode_pembayaran }}"
+                                    class="inline-flex items-center justify-between w-full p-5 border-b-2 border-transparent peer-checked:bg-blue-100 peer-checked:bg-opacity-50 cursor-pointer hover:bg-gray-100 rounded-t-xl">
+                                    <div class="flex gap-x-5">
+                                        <div class="w-2/12 self-center">
+                                            <img src="{{ asset('storage/assets/pay-logo/' . $item->logo) }}"
+                                                alt="logo-{{ $item->jenis_pembayaran }}">
+                                        </div>
+                                        <div class="info-bank">
+                                            <div class="w-full text-md md:text-lg font-semibold">
+                                                {{ $item->jenis_pembayaran }}
+                                            </div>
+                                            <div class="w-full text-sm md:text-base">
+                                                Menggunakan
+                                                @if ($item->keterangan == 'BANK_TF')
+                                                    Virtual Account {{ $item->jenis_pembayaran }}
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailPembayaran;
 use App\Models\DuitkuLog;
 use App\Models\identitasWeb;
+use App\Models\MetodePembayaran;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use Carbon\Carbon;
@@ -44,6 +45,8 @@ class MenuPembayaranController extends Controller
     {
         $siswaLogin = Siswa::where("nisn", session("nisn"))->first();
 
+        $metode_bayar = MetodePembayaran::all();
+
         $pickBulan = session("pickBulan");
         $biaya_admin = 0;
         $bulanTahun = [];
@@ -72,7 +75,8 @@ class MenuPembayaranController extends Controller
             "biaya_admin" => $biaya_admin,
             "grand_total" => $grand_total,
             "identitas_web" => $this->identitas_web,
-            "siswaLogin" => $siswaLogin
+            "siswaLogin" => $siswaLogin,
+            "metodeBayar" => $metode_bayar
         ]);
     }
 
@@ -92,13 +96,13 @@ class MenuPembayaranController extends Controller
             DB::beginTransaction();
             $pembayaran = new Pembayaran();
             $pembayaran->no_pembayaran = "00" . random_int(100, 999) . Carbon::now()->format("dmY") . random_int(10, 99);
-            $pembayaran->tgl_bayar = Carbon::now()->format("Y-m-d");
-            $pembayaran->nisn = "0064628498";
+            $pembayaran->tgl_bayar = Carbon::now();
+            $pembayaran->nisn = session("nisn");
             $pembayaran->jmlh_bulan = $request->jmlh_bulan;
             $pembayaran->total_bayar = $request->grand_total;
             $pembayaran->status = "Pending";
             $pembayaran->metode_pembayaran = $request->payment_type;
-            $pembayaran->thn_ajaran = "2023/2024";
+            $pembayaran->thn_ajaran = session("selected_thn_ajaran");
             $pembayaran->save();
 
             foreach ($pickBulan as $bulan) {
@@ -109,7 +113,7 @@ class MenuPembayaranController extends Controller
             }
 
             //diganti duitkuConfig
-            $ngrokUrl = "https://294d-103-159-96-141.ngrok-free.app";
+            $ngrokUrl = env("NGROK_URL");
             $merchantCode = env("DUITKU_MERCHANT_CODE"); // WAJIB
             $apiKey = env("DUITKU_MERCHANT_KEY"); // WAJIB
 
@@ -117,11 +121,11 @@ class MenuPembayaranController extends Controller
             $merchantOrderId = $pembayaran->no_pembayaran; // WAJIB
             $paymentAmount = $pembayaran->total_bayar; // WAJIB
             $paymentMethod = $pembayaran->metode_pembayaran; // WAJIB
-            $productDetails = 'Tes pembayaran menggunakan Duitku'; //WAJIB
+            $productDetails = "Pembayaran SPP Tahun Ajaran " . session("selected_thn_ajaran"); //WAJIB
             $email = 'test@test.com'; // WAJIB
-            $customerVaName = 'John Doe'; // tampilan nama pada tampilan konfirmasi bank (WAJIB)
-            $callbackUrl = "$ngrokUrl/pembayaran/duitku-callback"; // url untuk callback
-            $returnUrl = "$ngrokUrl/riwayat-pembayaran/show/"; // url untuk redirect
+            $customerVaName = session("nama"); // tampilan nama pada tampilan konfirmasi bank (WAJIB)
+            $callbackUrl = $ngrokUrl . "/pembayaran/duitku-callback"; // url untuk callback
+            $returnUrl = $ngrokUrl . "/riwayat-pembayaran/show/"; // url untuk redirect
             $signature = md5($merchantCode . $merchantOrderId . $paymentAmount . $apiKey); //WAJIB
 
             //OPSIONAL
@@ -146,9 +150,7 @@ class MenuPembayaranController extends Controller
                 "response_get_transaction" => $response_get_transaction
             ]);
 
-
             $data_response = json_decode($response_get_transaction, true);
-
 
             DuitkuLog::create([
                 "no_pembayaran" => $merchantOrderId,
@@ -158,6 +160,7 @@ class MenuPembayaranController extends Controller
 
 
             DB::commit();
+            session()->forget(["pickBulan", "nominal_spp", "total_bayar_spp", "thn_ajaran_awal", "thn_ajaran_akhir"]);
             return redirect()->route("riwayat-pembayaran.show", $merchantOrderId);
         } catch (\Exception $e) {
             DB::rollBack();
