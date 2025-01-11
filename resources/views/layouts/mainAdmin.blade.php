@@ -10,7 +10,7 @@
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
     @isset($logo)
-        <link rel="shortcut icon" href="{{ asset('storage/assets/logo/logo020125788.png') }}" type="image/png">
+        <link rel="shortcut icon" href="{{ asset('storage/assets/logo/' . $logo) }}" type="image/png">
     @endisset
     {{-- DataTable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
