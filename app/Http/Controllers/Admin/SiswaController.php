@@ -50,7 +50,8 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::find($id);
         $tanggal_lahir = Carbon::createFromFormat("Y-m-d", $siswa->tgl_lahir)->format("d m Y");
-        return view("pages.admin.siswa.show", ["pages" => $this->pages, "siswa" => $siswa, "tanggal_lahir" => $tanggal_lahir]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.siswa.show", ["pages" => $this->pages, "siswa" => $siswa, "tanggal_lahir" => $tanggal_lahir, "logo" => $logo]);
     }
 
     /**
@@ -62,7 +63,8 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $siswa = Siswa::find($id);
-        return view("pages.admin.siswa.form", ["pages" => $this->pages, "siswa" => $siswa]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.siswa.form", ["pages" => $this->pages, "siswa" => $siswa, "logo" => $logo]);
     }
 
     /**

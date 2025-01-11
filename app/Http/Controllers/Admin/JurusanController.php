@@ -59,7 +59,12 @@ class JurusanController extends Controller
     public function edit($id)
     {
         $jurusan = Jurusan::find($id);
-        return view('pages.admin.jurusan.form', ["pages" => $this->pages, "jurusan" => $jurusan]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.jurusan.form', [
+            "pages" => $this->pages,
+            "jurusan" => $jurusan,
+            "logo" => $logo
+        ]);
     }
 
     /**
