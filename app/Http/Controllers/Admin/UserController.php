@@ -59,7 +59,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $admin = User::find($id);
-        return view('pages.admin.admin.form', ['pages' => $this->pages, 'admin' => $admin]);
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.admin.form', [
+            'pages' => $this->pages,
+            'admin' => $admin,
+            "logo" => $logo,
+        ]);
     }
 
     /**
