@@ -5,17 +5,17 @@
         <div class="greeting">
             <h1 class="text-2xl md:text-5xl font-bold text-myNavy">{{ $pages }}</h1>
             <p class="text-sm md:text-lg mt-1">
-                Menu untuk mengelola pembayaran spp
+                Menu untuk mengelola riwayat pembayaran spp
             </p>
         </div>
 
-        <div class="tabel-pembayaran mt-4 w-full h-[55vh] overflow-auto">
-            <livewire:siswa.menu-pembayaran.tabel-menu-pembayaran :nisn="session('nisn')" />
+        <div class="tabel-riwayat-pembayaran mt-4 w-full h-[55vh] overflow-auto">
+            <livewire:siswa.menu-riwayat.tabel-menu-riwayat-pembayaran :nisn="session('nisn')" />
         </div>
     </section>
 
     <section
-        class="relative bantuan text-center px-7 z-10 h-60 flex justify-center items-center text-white bg-cover mt-5 bg-center
+        class="relative bantuan text-center px-7 z-10 h-60 flex justify-center items-center text-white bg-cover bg-center
             before:content-['']
             before:absolute
             before:inset-0

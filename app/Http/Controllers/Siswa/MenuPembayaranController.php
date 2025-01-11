@@ -7,6 +7,7 @@ use App\Models\DetailPembayaran;
 use App\Models\DuitkuLog;
 use App\Models\identitasWeb;
 use App\Models\Pembayaran;
+use App\Models\Siswa;
 use Carbon\Carbon;
 use Duitku\Api;
 use Duitku\Config;
@@ -18,20 +19,31 @@ use Illuminate\Support\Facades\Session;
 
 class MenuPembayaranController extends Controller
 {
-    public $pages = "Menu Pembayaran", $logo;
+    public $pages = "Menu Pembayaran";
+    public $logo, $identitas_web;
 
     public function __construct()
     {
-        $this->logo = identitasWeb::first()->logo;
+        $identitas_web = identitasWeb::first();
+        $this->logo = $identitas_web->logo;
+        $this->identitas_web = $identitas_web;
     }
 
     public function index()
     {
-        return view("pages.siswa.pembayaran.index", ["pages" => $this->pages, "logo" => $this->logo]);
+        $siswaLogin = Siswa::where("nisn", session("nisn"))->first();
+        if (session()->has("pickBulan")) {
+            return redirect()->route("detail-pembayaran.siswa");
+        }
+
+        $no_hp_institusi = ltrim($this->identitas_web->no_telp, "0");
+        return view("pages.siswa.pembayaran.index", ["pages" => $this->pages, "logo" => $this->logo, "identitas_web" => $this->identitas_web, "siswaLogin" => $siswaLogin, "no_telp" => $no_hp_institusi]);
     }
 
     public function indexDetailPembayaran()
     {
+        $siswaLogin = Siswa::where("nisn", session("nisn"))->first();
+
         $pickBulan = session("pickBulan");
         $biaya_admin = 0;
         $bulanTahun = [];
@@ -58,7 +70,9 @@ class MenuPembayaranController extends Controller
             "nominal_spp" => $nominal_spp,
             "total_bayar_spp" => $total_bayar_spp,
             "biaya_admin" => $biaya_admin,
-            "grand_total" => $grand_total
+            "grand_total" => $grand_total,
+            "identitas_web" => $this->identitas_web,
+            "siswaLogin" => $siswaLogin
         ]);
     }
 
@@ -154,5 +168,11 @@ class MenuPembayaranController extends Controller
 
             return redirect()->route("pembayaran.siswa")->with("status", "error")->with("msg", "Terjadi kesalahan saat memproses pembayaran : " . $e->getMessage());
         }
+    }
+
+    public function batalBayar()
+    {
+        session()->forget(["pickBulan", "nominal_spp", "total_bayar_spp", "thn_ajaran_awal", "thn_ajaran_akhir"]);
+        return redirect()->route("pembayaran.siswa");
     }
 }

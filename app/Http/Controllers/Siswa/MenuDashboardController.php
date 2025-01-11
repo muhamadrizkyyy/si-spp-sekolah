@@ -26,6 +26,7 @@ class MenuDashboardController extends Controller
         $logo = $this->logo;
         $identitas_web = $this->identitas_web;
         $siswaLogin = Siswa::where("nisn", session("nisn"))->first();
+        $data_pembayaran = Pembayaran::where("nisn", session("nisn"))->orderby("id", "desc")->limit(3)->get();
 
         $byr_thn_ajaran = Pembayaran::where("thn_ajaran", $siswaLogin->thn_ajaran)->where("nisn", $siswaLogin->nisn)->where("status", "Success")->get();
         $byr_all = Pembayaran::where("nisn", $siswaLogin->nisn)->where("status", "Success")->get();
@@ -39,6 +40,6 @@ class MenuDashboardController extends Controller
             $bulan_all = (($startYearNow - $startYearStart + 1) * 12);
         }
 
-        return view("pages.siswa.dashboard.index", compact("pages", "logo", "identitas_web", "siswaLogin", "byr_thn_ajaran", "byr_all", "bulan_all"));
+        return view("pages.siswa.dashboard.index", compact("pages", "logo", "identitas_web", "siswaLogin", "byr_thn_ajaran", "byr_all", "bulan_all", "data_pembayaran"));
     }
 }

@@ -24,10 +24,12 @@
 
 <body>
 
-    <main class="h-[100rem]">
+    <main>
         @include('partials.siswa.navbar')
         @yield('content')
     </main>
+    @include('partials.siswa.footer')
+
 
     <script src="{{ asset('js/flowbite.js') }}"></script>
     {{-- Jquery --}}
@@ -36,6 +38,29 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- DataTable --}}
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+    <script>
+        function customNav(height) {
+            if (height > 20) {
+                $("#navbar").removeClass("w-[95%] rounded-3xl");
+                $("#navbar").addClass("w-full");
+            } else {
+                $("#navbar").removeClass("w-full");
+                $("#navbar").addClass("w-[95%] rounded-3xl");
+            }
+        }
+
+        $(document).ready(function() {
+            var height = $(document).scrollTop();
+            customNav(height);
+
+            $(document).scroll(function() {
+                height = $(document).scrollTop();
+                customNav(height);
+            })
+
+        });
+    </script>
 
     @if (session('status'))
         <script>

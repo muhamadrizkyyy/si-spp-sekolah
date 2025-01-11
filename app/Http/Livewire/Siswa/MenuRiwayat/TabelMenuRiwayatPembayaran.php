@@ -1,26 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Siswa\MenuPembayaran;
+namespace App\Http\Livewire\Siswa\MenuRiwayat;
 
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\TahunAjaran;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
-class TabelMenuPembayaran extends Component
+class TabelMenuRiwayatPembayaran extends Component
 {
-    public $data_thn_ajaran, $data_siswa, $data_pembayaran = [];
-    public $selected_thn_ajaran; //property untuk menyimpan tahun ajaran yang dipilih
+    public $data_thn_ajaran = [], $data_pembayaran = [], $data_siswa;
+
+    //property untuk menangkap data tahun ajaran yang dipilih
+    public $selected_thn_ajaran;
+
     public $nisn;
-
-    //property untuk menyimpan data pembayaran baru
-    public $pickBulan = []; //property untuk menyimpan indeks bulan yang akan dibayar
     public $nominal_spp;
-    public $total_bayar_spp;
-
-    //property untuk ambil tahun ajaran awal dan akhir
     public $thn_ajaran_awal, $thn_ajaran_akhir;
 
     public function mount($nisn = null)
@@ -31,24 +27,13 @@ class TabelMenuPembayaran extends Component
         $selected_thn_ajaran = $this->data_siswa->thn_ajaran_masuk;
 
         $this->data_thn_ajaran = TahunAjaran::where("thn_ajaran", ">=", $selected_thn_ajaran)->orderBy("thn_ajaran", "asc")->get();
-
-        // $this->collectDataPembayaran($this->nisn);
-    }
-
-    public function updatedPickBulan()
-    {
-        $this->collectDataPembayaran($this->nisn);
-        $this->total_bayar_spp = $this->nominal_spp * count($this->pickBulan);
     }
 
     //method menangani logika ketika pilihan tahun ajaran di ubah
     public function updatedSelectedThnAjaran()
     {
-        $this->pickBulan = [];
-        if ($this->selected_thn_ajaran) {
-            $tahunAjaran = TahunAjaran::where("thn_ajaran", $this->selected_thn_ajaran)->first();
-            $this->nominal_spp = $tahunAjaran->jumlah_spp;
-        }
+        $tahunAjaran = TahunAjaran::where("thn_ajaran", $this->selected_thn_ajaran)->first();
+        $this->nominal_spp = $tahunAjaran->jumlah_spp;
 
         // Pecah nilai tahun ajaran yang dipilih menjadi tahun mulai dan tahun akhir
         list($startYear, $endYear) = explode('/', $this->selected_thn_ajaran);
@@ -57,21 +42,18 @@ class TabelMenuPembayaran extends Component
         $this->collectDataPembayaran($this->nisn);
     }
 
-    public function bayar()
+    public function downloadPDF()
     {
         $this->collectDataPembayaran($this->nisn);
+        session()->put("selected_siswa", $this->nisn);
+        session()->put("selected_thn_ajaran", $this->selected_thn_ajaran);
 
-        session()->put("pickBulan", $this->pickBulan);
-        session()->put("nominal_spp", $this->nominal_spp);
-        session()->put("total_bayar_spp", $this->total_bayar_spp);
-        session()->put("thn_ajaran_awal", $this->thn_ajaran_awal);
-        session()->put("thn_ajaran_akhir", $this->thn_ajaran_akhir);
-        Redirect::route("detail-pembayaran.siswa");
+        return redirect()->route("riwayat-pembayaran.cetak");
     }
 
     public function render()
     {
-        return view('livewire.siswa.menu-pembayaran.tabel-menu-pembayaran');
+        return view('livewire.siswa.menu-riwayat.tabel-menu-riwayat-pembayaran');
     }
 
     private function setBulanTahun($y, $m)
