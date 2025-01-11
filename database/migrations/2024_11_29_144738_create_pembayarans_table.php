@@ -16,7 +16,7 @@ class CreatePembayaransTable extends Migration
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
             $table->string("no_pembayaran")->unique();
-            $table->date("tgl_bayar");
+            $table->dateTime("tgl_bayar");
             $table->string("nisn");
             $table->foreign("nisn")->references("nisn")->on("siswa")->onUpdate("cascade");
             $table->integer("jmlh_bulan");
