@@ -32,4 +32,9 @@ class Pembayaran extends Model
     {
         return $this->hasOne(MetodePembayaran::class, 'kode_pembayaran', 'metode_pembayaran');
     }
+
+    public function duitkuLogs()
+    {
+        return $this->hasOne(DuitkuLog::class, "no_pembayaran", "no_pembayaran");
+    }
 }

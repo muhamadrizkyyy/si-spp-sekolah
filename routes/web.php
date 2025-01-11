@@ -10,7 +10,14 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\MenuProfileController;
+use App\Http\Controllers\MenuRiwayatController;
+use App\Http\Controllers\Siswa\DuitkuCallbackController;
+use App\Http\Controllers\Siswa\MenuPembayaranController;
+use App\Http\Controllers\Siswa\MenuDashboardController;
 use App\Http\Livewire\Auth\Login;
+use App\Models\Pembayaran;
+use App\Http\Livewire\Auth\Siswa\LoginSiswa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +33,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get("/login", LoginSiswa::class)->name("login.siswa");
+
+Route::middleware("checkLoginSiswa")->group(function () {
+    Route::get("/dashboard", [MenuDashboardController::class, "index"])->name("dashboardSiswa");
+    Route::get("/profile", [MenuProfileController::class, "index"])->name("profile.siswa");
+    Route::get("/logout", [LoginSiswa::class, "logout"])->name("logout.siswa");
+
+    Route::prefix("pembayaran")->group(function () {
+        Route::get("/", [MenuPembayaranController::class, "index"])->name("pembayaran.siswa");
+        Route::get("/detail", [MenuPembayaranController::class, "indexDetailPembayaran"])->name("detail-pembayaran.siswa");
+        Route::get("/batal", [MenuPembayaranController::class, "batalBayar"])->name("pembayaran.batal");
+        Route::post("/proses-bayar", [MenuPembayaranController::class, "prosesBayar"])->name("proses-pembayaran.siswa");
+        Route::post("/duitku-callback", DuitkuCallbackController::class);
+    });
+
+    Route::prefix("riwayat-pembayaran")->group(function () {
+        Route::get("/", [MenuRiwayatController::class, "index"])->name("riwayat-pembayaran");
+        Route::get("/show/{no_pembayaran}", [MenuRiwayatController::class, "show"])->name("riwayat-pembayaran.show");
+        Route::get("/cetak", [MenuRiwayatController::class, "cetakLaporan"])->name("riwayat-pembayaran.cetak");
+        // Route::get("/show/{no_pembayaran}", [MenuRiwayatController::class, "show"])->name("riwayat-pembayaran.show");
+    });
 });
 
 Route::prefix("admin")->group(function () {
