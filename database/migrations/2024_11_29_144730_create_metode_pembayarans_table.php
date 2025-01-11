@@ -17,6 +17,7 @@ class CreateMetodePembayaransTable extends Migration
             $table->id();
             $table->string('kode_pembayaran')->unique();
             $table->string('jenis_pembayaran');
+            $table->string("keterangan")->nullable();
             $table->string("logo")->nullable();
             $table->timestamps();
         });
