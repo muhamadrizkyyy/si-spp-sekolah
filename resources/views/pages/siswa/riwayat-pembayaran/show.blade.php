@@ -59,7 +59,7 @@
         <div class="btn-group w-full md:w-1/2 mt-2 text-right">
             @if ($belum_bayar)
                 <button id="popup-btn"
-                    class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    class="px-3 py-2 text-sm font-medium text-center text-white bg-myNavy rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     data-modal-target="popup-payment" data-modal-toggle="popup-payment">
                     Bayar SPP
                 </button>
@@ -96,9 +96,9 @@
                                     <h3 class="text-sm md:text-xl font-bold text-white dark:text-white">
                                         Metode Pembayaran
                                     </h3>
-                                    <div class="p-0.5 md:p-1.5 mt-2 bg-white">
-                                        <span
-                                            class="font-bold">{{ $pembayaran->metodePembayaran->jenis_pembayaran }}</span>
+                                    <div class="p-0.5 justify-self-end md:p-1.5 mt-2 w-24 bg-white">
+                                        <img src="{{ asset('storage/assets/pay-logo/' . $pembayaran->metodePembayaran->logo) }}"
+                                            alt="logo-{{ $pembayaran->metodePembayaran->jenis_pembayaran }}">
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                 </p>
 
                                 <div
-                                    class="text-white bg-red-600 font-medium rounded-full md:w-1/2 text-sm md:text-lg px-5 py-2.5 text-center">
+                                    class="text-white bg-red-600 font-medium rounded-full w-auto text-sm md:text-lg px-5 py-2.5 text-center">
                                     Bayar Sebelum {{ $durasi }}
                                 </div>
                                 <!-- Modal footer -->
