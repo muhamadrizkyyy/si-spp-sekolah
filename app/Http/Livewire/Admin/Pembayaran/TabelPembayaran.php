@@ -92,7 +92,7 @@ class TabelPembayaran extends Component
             DB::transaction(function () {
                 $pembayaran = new Pembayaran();
                 $pembayaran->no_pembayaran = "00" . random_int(100, 999) . Carbon::now()->format("dmY") . random_int(10, 99);
-                $pembayaran->tgl_bayar = Carbon::now()->format("Y-m-d");
+                $pembayaran->tgl_bayar = Carbon::now();
                 $pembayaran->nisn = $this->selected_siswa;
                 $pembayaran->jmlh_bulan = count($this->pickBulan);
                 $pembayaran->total_bayar = $this->total_bayar_spp;
