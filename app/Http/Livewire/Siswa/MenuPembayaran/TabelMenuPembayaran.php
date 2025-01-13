@@ -66,6 +66,7 @@ class TabelMenuPembayaran extends Component
         session()->put("total_bayar_spp", $this->total_bayar_spp);
         session()->put("thn_ajaran_awal", $this->thn_ajaran_awal);
         session()->put("thn_ajaran_akhir", $this->thn_ajaran_akhir);
+        session()->put("selected_thn_ajaran", $this->selected_thn_ajaran);
         Redirect::route("detail-pembayaran.siswa");
     }
 

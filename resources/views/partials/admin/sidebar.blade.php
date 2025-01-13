@@ -60,7 +60,7 @@
                         {{-- Data Jurusan --}}
                         <li class="flex-1">
                             <a href="{{ route('jurusan.index') }}"
-                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white {{ Request::is('admin/jurusan') ? 'border-b-2 border-blue-600' : 'border-gray-800' }} ">
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 hover:border-myOrange {{ Request::is('admin/jurusan') ? 'border-blue-600' : 'border-gray-800' }} ">
                                 <i
                                     class="fas fa-book pr-0 md:pr-3 {{ Request::is('admin/jurusan') ? 'text-blue-600' : '' }}"></i><span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Data
@@ -70,9 +70,9 @@
                         {{-- Data Tahun Ajaran --}}
                         <li class="flex-1">
                             <a href="{{ route('tahunAjaran.index') }}"
-                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 hover:border-purple-500 {{ Request::is('admin/tahun_ajaran') ? 'border-blue-600' : 'border-gray-800' }}">
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 hover:border-purple-500 {{ Request::is('admin/tahunAjaran') ? 'border-blue-600' : 'border-gray-800' }}">
                                 <i
-                                    class="fa fa-book pr-0 md:pr-3 {{ Request::is('admin/tahun_ajaran') ? 'text-blue-600' : '' }}"></i>
+                                    class="fa fa-book pr-0 md:pr-3 {{ Request::is('admin/tahunAjaran') ? 'text-blue-600' : '' }}"></i>
                                 <span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Data
                                     Tahun Ajaran
@@ -87,6 +87,18 @@
                                     class="fa fa-user-graduate pr-0 md:pr-3 {{ Request::is('admin/siswa') ? 'text-blue-600' : '' }}"></i><span
                                     class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Data
                                     Siswa</span>
+                            </a>
+                        </li>
+                        {{-- Data Metode Pembayaran --}}
+                        <li class="flex-1">
+                            <a href="{{ route('metodePembayaran.index') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 hover:border-green-300 {{ Request::is('admin/metodePembayaran') ? 'border-blue-600' : 'border-gray-800' }}">
+                                <i
+                                    class="fa fa-book pr-0 md:pr-3 {{ Request::is('admin/metodePembayaran') ? 'text-blue-600' : '' }}"></i>
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">
+                                    Data Metode Bayar
+                                </span>
                             </a>
                         </li>
                     </ul>

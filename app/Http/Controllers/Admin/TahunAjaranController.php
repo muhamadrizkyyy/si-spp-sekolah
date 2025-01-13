@@ -59,7 +59,12 @@ class TahunAjaranController extends Controller
     public function edit($id)
     {
         $tahun_ajaran = TahunAjaran::find($id);
-        return view("pages.admin.tahunAjaran.form", ["pages" => $this->pages, "tahun_ajaran" => $tahun_ajaran]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.tahunAjaran.form", [
+            "pages" => $this->pages,
+            "tahun_ajaran" => $tahun_ajaran,
+            "logo" => $logo
+        ]);
     }
 
     /**

@@ -7,7 +7,10 @@ use App\Models\Pembayaran;
 use App\Models\Siswa;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Duitku\Api;
+use Duitku\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MenuRiwayatController extends Controller
 {
@@ -34,6 +37,21 @@ class MenuRiwayatController extends Controller
 
     public function show($no_pembayaran)
     {
+        $pembayaran = Pembayaran::where("no_pembayaran", $no_pembayaran)->first();
+
+        //cek jika pembayaran expired
+        if (!$pembayaran->user_id || $pembayaran->metode_pembayaran != "CSH") {
+            $statusPembayaran = $this->checkStatus($no_pembayaran);
+
+            if ($statusPembayaran == "02") {
+                $pembayaran->status = "Failed";
+                $pembayaran->save();
+            } else if ($statusPembayaran == "00") {
+                $pembayaran->status = "Success";
+                $pembayaran->save();
+            }
+        }
+
         $pages = $this->pages;
         $logo = $this->logo;
         $identitas_web = $this->identitas_web;
@@ -48,10 +66,9 @@ class MenuRiwayatController extends Controller
 
         $durasi = "";
         if ($data_pembayaran->metodePembayaran->keterangan == "BANK_TF") {
-            Carbon::setLocale("id_ID");
-            $durasi = now()->tomorrow();
-            $durasi->locale("id");
-            $durasi = $durasi->isoFormat("LL");
+            $konversi_lokal = Carbon::parse($data_pembayaran->tgl_bayar)->timezone('Asia/Jakarta');
+            $durasi = $konversi_lokal->copy()->addHours(24);
+            $durasi = $durasi->format("d M Y H:i:s");
         }
         return view("pages.siswa.riwayat-pembayaran.show", [
             "pages" => $this->pages,
@@ -99,5 +116,20 @@ class MenuRiwayatController extends Controller
 
         //hapus sesi
         session()->forget(["selected_siswa", "selected_thn_ajaran"]);
+    }
+
+    private function checkStatus($merchantOrderId)
+    {
+        $merchantCode = env("DUITKU_MERCHANT_CODE"); // WAJIB
+        $apiKey = env("DUITKU_MERCHANT_KEY"); // WAJIB
+
+        $duitkuConfig = new Config($apiKey, $merchantCode);
+
+        $cek_pembayaran = Api::transactionStatus($merchantOrderId, $duitkuConfig);
+        Log::info("Cek Pembayaran in show : ", [
+            "message" => $cek_pembayaran
+        ]);
+        $verif = json_decode($cek_pembayaran);
+        return $verif->statusCode;
     }
 }

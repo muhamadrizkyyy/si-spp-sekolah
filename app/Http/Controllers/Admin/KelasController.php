@@ -66,7 +66,12 @@ class KelasController extends Controller
     public function edit($id)
     {
         $kelas = Kelas::find($id);
-        return view("pages.admin.kelas.form", ["pages" => $this->pages, "kelas" => $kelas]);
+        $logo = identitasWeb::first()->logo;
+        return view("pages.admin.kelas.form", [
+            "pages" => $this->pages,
+            "kelas" => $kelas,
+            "logo" => $logo
+        ]);
     }
 
     /**

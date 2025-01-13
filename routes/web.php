@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\KenaikanKelasController;
 use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\MetodePembayaranController;
 use App\Http\Controllers\Admin\PembayaranController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SiswaController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Siswa\MenuDashboardController;
 use App\Http\Livewire\Auth\Login;
 use App\Models\Pembayaran;
 use App\Http\Livewire\Auth\Siswa\LoginSiswa;
+use App\Models\MetodePembayaran;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +75,7 @@ Route::prefix("admin")->group(function () {
         Route::resource('jurusan', JurusanController::class);
         Route::resource('tahunAjaran', TahunAjaranController::class);
         Route::resource('siswa', SiswaController::class);
+        Route::resource('metodePembayaran', MetodePembayaranController::class);
         Route::get("/kenaikan-kelas", [KenaikanKelasController::class, "index"])->name("kenaikan-kelas");
         Route::get("/pembayaran", [PembayaranController::class, "index"])->name("pembayaran");
         Route::get("/pembayaran/{no_pembayaran}/cetak", [PembayaranController::class, "cetakNota"])->name("pembayaran.cetak");

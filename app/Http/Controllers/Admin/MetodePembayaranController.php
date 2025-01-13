@@ -4,17 +4,38 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\identitasWeb;
-use App\Models\Jurusan;
+use App\Models\MetodePembayaran;
 use Illuminate\Http\Request;
 
-class JurusanController extends Controller
+class MetodePembayaranController extends Controller
 {
-    public $pages = "Data Jurusan";
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public $pages = "Data Metode Pembayaran";
+    public $logo, $identitas_web;
+
+    public function __construct()
+    {
+        $identitas_web = identitasWeb::first();
+        $this->logo = $identitas_web->logo;
+        $this->identitas_web = $identitas_web;
+    }
 
     public function index()
     {
-        $logo = identitasWeb::first()->logo;
-        return view('pages.admin.jurusan.index', ["pages" => $this->pages, "logo" => $logo]);
+        $pages = $this->pages;
+        $logo = $this->logo;
+        $identitas_web = $this->identitas_web;
+
+        return view("pages.admin.metodePembayaran.index", compact(
+            "pages",
+            "logo",
+            "identitas_web"
+        ));
     }
 
     /**
@@ -24,8 +45,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        $logo = identitasWeb::first()->logo;
-        return view('pages.admin.jurusan.form', ["pages" => $this->pages, "logo" => $logo]);
+        return view("pages.admin.metodePembayaran.form", ["pages" => $this->pages, "logo" => $this->logo]);
     }
 
     /**
@@ -58,12 +78,11 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
-        $jurusan = Jurusan::find($id);
-        $logo = identitasWeb::first()->logo;
-        return view('pages.admin.jurusan.form', [
+        $metodePembayaran = MetodePembayaran::find($id);
+        return view("pages.admin.metodePembayaran.form", [
             "pages" => $this->pages,
-            "jurusan" => $jurusan,
-            "logo" => $logo
+            "logo" => $this->logo,
+            "id_metode" => $metodePembayaran,
         ]);
     }
 

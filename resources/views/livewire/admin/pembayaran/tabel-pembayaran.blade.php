@@ -122,7 +122,11 @@
                                     {{ $pembayaran->metodePembayaran->jenis_pembayaran }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $pembayaran->petugas->nama }}
+                                    @if ($pembayaran->user_id)
+                                        {{ $pembayaran->petugas->nama }}
+                                    @else
+                                        by sistem
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     @if ($pembayaran->status == 'Success')
@@ -189,4 +193,5 @@
             </tbody>
         </table>
     </form>
+
 </div>
