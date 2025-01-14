@@ -1,7 +1,7 @@
 <nav class="bg-myNavy dark:bg-gray-900 sticky top-0 w-[95%] rounded-3xl mt-5 mb-10 mx-auto border-b border-gray-200 dark:border-gray-600 transition-all"
     id="navbar">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2.5">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="{{ route('landing-page') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('storage/assets/logo/' . $logo) }}" class="h-5 md:h-8" alt="Flowbite Logo">
             <span
                 class="self-center text-sm md:text-xl font-semibold whitespace-nowrap text-white">{{ $identitas_web->nama_institusi }}</span>
