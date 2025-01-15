@@ -1,4 +1,4 @@
-<nav class="bg-myNavy dark:bg-gray-900 sticky top-0 w-[95%] rounded-3xl mt-5 mb-10 mx-auto border-b border-gray-200 dark:border-gray-600 transition-all"
+<nav class="bg-myNavy dark:bg-gray-900 sticky top-0 w-[95%] z-50 rounded-3xl mt-5 mb-10 mx-auto transition-all"
     id="navbar">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2.5">
         <a href="{{ route('landing-page') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
