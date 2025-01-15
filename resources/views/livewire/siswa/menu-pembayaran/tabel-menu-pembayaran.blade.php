@@ -84,7 +84,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($pembayaran->status != 'Success' || $pembayaran->status != 'Pending')
+                                    @if ($pembayaran->status == 'Success' || $pembayaran->status == 'Pending')
                                         -
                                     @else
                                         <div class="flex items-center justify-center">
