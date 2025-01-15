@@ -11,11 +11,12 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAjaranController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\MenuProfileController;
-use App\Http\Controllers\MenuRiwayatController;
 use App\Http\Controllers\Siswa\DuitkuCallbackController;
+use App\Http\Controllers\Siswa\LandingPageController;
 use App\Http\Controllers\Siswa\MenuPembayaranController;
 use App\Http\Controllers\Siswa\MenuDashboardController;
+use App\Http\Controllers\Siswa\MenuProfileController;
+use App\Http\Controllers\Siswa\MenuRiwayatController;
 use App\Http\Livewire\Auth\Login;
 use App\Models\Pembayaran;
 use App\Http\Livewire\Auth\Siswa\LoginSiswa;
@@ -33,9 +34,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, "index"])->name("landing-page");
 
 Route::get("/login", LoginSiswa::class)->name("login.siswa");
 

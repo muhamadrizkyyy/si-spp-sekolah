@@ -9,7 +9,7 @@
             </p>
         </div>
 
-        <div class="tabel-riwayat-pembayaran mt-4 w-full h-[55vh] overflow-auto">
+        <div class="tabel-riwayat-pembayaran mt-4 w-full overflow-auto">
             <livewire:siswa.menu-riwayat.tabel-menu-riwayat-pembayaran :nisn="session('nisn')" />
         </div>
     </section>
