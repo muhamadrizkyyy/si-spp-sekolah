@@ -1,7 +1,8 @@
 <button data-dropdown-toggle="profile {{ $size }}"
     class="text-white bg-myBlue focus:ring-4 focus:ring-blue-300 font-medium rounded-md lg:rounded-xl text-sm px-2.5 lg:px-5 py-1.5 lg:py-3 md:ms-3.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
     <div class="flex gap-x-3">
-        <img src="" alt="..." class="min-h-full bg-gray-300 aspect-square">
+        <img src="{{ asset('storage/assets/bg/avatar.jpg') }}" alt="..."
+            class="w-8 rounded bg-gray-300 aspect-square">
         <div class="profile flex flex-col text-left">
             <span class="nama_siswa text-xs">{{ $siswaLogin->nama }}</span>
             <span class="kelas text-xs">{{ $siswaLogin->kelas->kode_kelas }}</span>
