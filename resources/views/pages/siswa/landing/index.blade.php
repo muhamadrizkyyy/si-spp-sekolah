@@ -179,7 +179,7 @@
         <div class="lg:flex gap-x-5 justify-center">
             <!-- Gambar Full -->
             <div class="hidden lg:block img-faq w-[25%]">
-                <img src="http://si-spp-sekolah.test/storage/assets/bg/faq-img.png" class="object-cover rounded-xl"
+                <img src="{{ asset('storage/assets/bg/faq-img.png') }}" class="object-cover rounded-xl"
                     alt="">
             </div>
             <!-- Konten FAQ -->
