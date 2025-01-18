@@ -48,7 +48,7 @@ Route::middleware("checkLoginSiswa")->group(function () {
         Route::get("/detail", [MenuPembayaranController::class, "indexDetailPembayaran"])->name("detail-pembayaran.siswa");
         Route::get("/batal", [MenuPembayaranController::class, "batalBayar"])->name("pembayaran.batal");
         Route::post("/proses-bayar", [MenuPembayaranController::class, "prosesBayar"])->name("proses-pembayaran.siswa");
-        Route::post("/duitku-callback", DuitkuCallbackController::class);
+        Route::post("/duitku-callback", DuitkuCallbackController::class)->withoutMiddleware('checkLoginSiswa');
     });
 
     Route::prefix("riwayat-pembayaran")->group(function () {
