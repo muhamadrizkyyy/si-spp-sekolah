@@ -17,4 +17,9 @@ class TahunAjaran extends Model
     {
         return $this->hasMany(Siswa::class, 'thn_ajaran', 'thn_ajaran');
     }
+
+    public function tahun_ajaran_bayar()
+    {
+        return $this->hasMany(Pembayaran::class, 'thn_ajaran', 'thn_ajaran');
+    }
 }

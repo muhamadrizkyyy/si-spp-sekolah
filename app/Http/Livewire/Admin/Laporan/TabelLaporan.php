@@ -18,7 +18,7 @@ class TabelLaporan extends Component
     //property untuk menangkap data tahun ajaran, kelas, dan siswa yang dipilih
     public $selected_thn_ajaran, $selected_kelas, $selected_siswa;
 
-    public $nominal_spp;
+    public $nominal_spp, $total_terbayar = 0, $total_belum_terbayar = 0;
     public $thn_ajaran_awal, $thn_ajaran_akhir;
 
     //property untuk menangkap event dari emit component lain / dari frontend (js) secara global
@@ -49,6 +49,21 @@ class TabelLaporan extends Component
     {
         $this->selected_siswa = $data;
         $this->collectDataPembayaran($this->selected_siswa);
+
+        //reset perhitungan
+        $this->total_belum_terbayar = 0;
+        $this->total_terbayar = 0;
+        foreach ($this->data_pembayaran as $pembayaran) {
+            if ($pembayaran->no_pembayaran) {
+                if ($pembayaran->status == "Success") {
+                    $this->total_terbayar += $pembayaran->tahunAjaran->jumlah_spp;
+                } else {
+                    $this->total_belum_terbayar += $pembayaran->tahunAjaran->jumlah_spp;
+                }
+            } else {
+                $this->total_belum_terbayar += $this->nominal_spp;
+            }
+        }
     }
 
     //method menangani logika ketika pilihan tahun ajaran di ubah

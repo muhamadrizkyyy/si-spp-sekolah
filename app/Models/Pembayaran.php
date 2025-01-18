@@ -37,4 +37,9 @@ class Pembayaran extends Model
     {
         return $this->hasOne(DuitkuLog::class, "no_pembayaran", "no_pembayaran");
     }
+
+    public function tahunAjaran()
+    {
+        return $this->belongsTo(TahunAjaran::class, 'thn_ajaran', 'thn_ajaran');
+    }
 }

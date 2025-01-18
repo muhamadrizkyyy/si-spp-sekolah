@@ -70,7 +70,7 @@
 
     <div class="overflow-x-auto">
         {{-- persiswa --}}
-        <table class="w-max min-w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+        <table class="w-max min-w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400"
             id="">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -82,6 +82,9 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Tanggal Pembayaran
+                    </th>
+                    <th scope="col" class="px-2 py-3">
+                        Tagihan SPP
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Metode Pembayaran
@@ -118,6 +121,9 @@
                             @if ($pembayaran->no_pembayaran != null)
                                 <td class="px-6 py-4">
                                     {{ $this->formatDate($pembayaran->tgl_bayar) }}
+                                </td>
+                                <td class="px-2 py-3">
+                                    {{ number_format($pembayaran->tahunAjaran->jumlah_spp, 0, ',', '.') }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $pembayaran->metodePembayaran->jenis_pembayaran }}
@@ -158,6 +164,9 @@
                                     -
                                 </td>
                                 <td class="px-6 py-4">
+                                    -
+                                </td>
+                                <td class="px-6 py-4">
                                     <span>-</span>
                                 </td>
                             @endif
@@ -175,6 +184,17 @@
                     </tr>
                 @endif
             </tbody>
+            <tfoot class="text-center font-bold bg">
+                <tr>
+                    <td colspan="2" class="px-3 py-3">Total Tagihan</td>
+                    <td class="px-3 py-3">{{ number_format($total_terbayar + $total_belum_terbayar, 0, ',', '.') }}
+                    </td>
+                    <td class="px-3 py-3">Total Terbayar</td>
+                    <td class="px-3 py-3">{{ number_format($total_terbayar, 0, ',', '.') }}</td>
+                    <td class="px-3 py-3">Total Belum Terbayar</td>
+                    <td class="px-3 py-3">{{ number_format($total_belum_terbayar, 0, ',', '.') }}</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
