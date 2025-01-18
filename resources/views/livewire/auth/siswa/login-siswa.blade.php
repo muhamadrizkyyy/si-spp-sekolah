@@ -1,27 +1,27 @@
 <div>
     <section
         class="flex items-center relative justify-center h-screen px-7 {{ isset($pages) ? 'bg-gradient-to-r from-myBlueOcean to-mySkyBlue' : '' }}">
-
-        @if (session('status') == 'error')
-            <div class="flex items-center p-4 mb-4 bg-red-100 text-sm text-red-800 border border-red-300 rounded-2xl dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
-                role="alert">
-                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                </svg>
-                <span class="sr-only">Info</span>
-                <div>
-                    <span class="font-medium">Alert!</span> {{ session('message') }}
-                </div>
-            </div>
-        @endif
         <div
             class="loginField relative block p-6 pt-12 w-full md:w-[40vw] bg-white border border-gray-200 rounded-[2rem] dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 shadow-lg shadow-slate-500">
             <div
                 class="title absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-2 px-7 rounded-2xl inline-block bg-gradient-to-r from-myOrange to-myYellowSand w-fit shadow-lg">
                 <h1 class="text-center text-white text-2xl font-medium">LOGIN</h1>
             </div>
+
+            @if (session('status') == 'error')
+                <div class="flex items-center p-4 mb-4 bg-red-100 text-xs text-red-800 border border-red-300 rounded-2xl dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="text-center">
+                        <span class="font-medium">Alert!</span> {{ session('message') }}
+                    </div>
+                </div>
+            @endif
             <form wire:submit.prevent='login'>
                 <div class="mb-6">
                     <label for="nisn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -65,6 +65,13 @@
             </div> --}}
                 <button type="submit"
                     class="text-white bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+
+                <p class="mt-4 text-sm text-center">
+                    Kembali ke
+                    <a class="text-myNavy hover:underline" href="{{ route('landing-page') }}">
+                        halaman utama
+                    </a>
+                </p>
             </form>
         </div>
 
