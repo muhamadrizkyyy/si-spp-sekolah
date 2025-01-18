@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailPembayaran;
 use App\Models\DuitkuLog;
 use App\Models\Pembayaran;
 use Duitku\Api;
@@ -54,6 +55,12 @@ class DuitkuCallbackController extends Controller
                     $pembayaran = Pembayaran::where("no_pembayaran", $notif->merchantOrderId)->first();
                     $pembayaran->status = "Failed";
                     $pembayaran->save();
+
+                    //jika pembayaran gagal maka detail dihapus agar data tidak duplikat saat ditampilkan di tabel menu pembayaran
+                    $detail_pembayaran = DetailPembayaran::where("pembayaran_id", $pembayaran->id)->delete();
+                    if ($detail_pembayaran) {
+                        Log::info("Detail Pembayaran Berhasil Dihapus");
+                    }
                 }
             } else if ($notif->resultCode == "01") {
                 // Action Pending

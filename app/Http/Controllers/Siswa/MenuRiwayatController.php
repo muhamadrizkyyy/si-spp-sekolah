@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailPembayaran;
 use App\Models\identitasWeb;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
@@ -47,6 +48,14 @@ class MenuRiwayatController extends Controller
             if ($statusPembayaran == "02") {
                 $pembayaran->status = "Failed";
                 $pembayaran->save();
+
+
+                //jika pembayaran gagal maka detail dihapus agar data tidak duplikat saat ditampilkan di tabel menu pembayaran
+                $detail_pembayaran = DetailPembayaran::where("pembayaran_id", $pembayaran->id)->get();
+                if (count($detail_pembayaran) != 0) {
+                    $detail_pembayaran->delete();
+                    Log::info("Detail Pembayaran Berhasil Dihapus");
+                }
             } else if ($statusPembayaran == "00") {
                 $pembayaran->status = "Success";
                 $pembayaran->save();
