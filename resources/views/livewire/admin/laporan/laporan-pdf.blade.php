@@ -21,7 +21,7 @@
         //method untuk ubah format tanggal
         function formatDate($date)
         {
-            return Carbon::parse($date)->format('d F Y');
+            return Carbon::parse($date)->format('d/m/Y');
         }
     @endphp
 
@@ -73,6 +73,24 @@
 
         .data-table tr:nth-child(odd) {
             background: #f0f0f0;
+        }
+
+        .recap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .recap-table tr th {
+            background: #e0e0e0;
+            padding-left: .7rem;
+        }
+
+        .recap-table td {
+            width: 50%;
+            padding-right: .7rem;
+            background: #f0f0f0;
+            text-align: right
         }
     </style>
 </head>
@@ -134,6 +152,9 @@
                 <th scope="col" class="px-6 py-3">
                     Tanggal Pembayaran
                 </th>
+                <th scope="col" class="px-3 py-3">
+                    Tagihan SPP
+                </th>
                 <th scope="col" class="px-6 py-3">
                     Metode Pembayaran
                 </th>
@@ -168,6 +189,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ formatDate($pembayaran->tgl_bayar) }}
+                            </td>
+                            <td class="px-3 py-3">
+                                {{ $pembayaran->tahunAjaran->jumlah_spp }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $pembayaran->metodePembayaran->jenis_pembayaran }}
@@ -211,6 +235,9 @@
                                 X
                             </td>
                             <td class="px-6 py-4">
+                                X
+                            </td>
+                            <td class="px-6 py-4">
                                 <span>X</span>
                             </td>
                         @endif
@@ -218,6 +245,35 @@
                 @endforeach
             @endif
         </tbody>
+    </table>
+
+    <table class="recap-table">
+        <thead>
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Total Seluruh Tagihan
+                </th>
+                <td class="">
+                    {{ number_format($total_terbayar + $total_belum_terbayar, 0, ',', '.') }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                    Total Terbayar
+                </th>
+                <td class=" bg-gray-50 dark:bg-gray-800">
+                    {{ number_format($total_terbayar, 0, ',', '.') }}
+                </td>
+            </tr>
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Total Belum Terbayar
+                </th>
+                <td class="">
+                    {{ number_format($total_belum_terbayar, 0, ',', '.') }}
+                </td>
+            </tr>
+        </thead>
     </table>
 </body>
 

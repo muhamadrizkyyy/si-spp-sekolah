@@ -18,7 +18,7 @@ class TabelLaporanPerkelas extends Component
     //property untuk menangkap data tahun ajaran, kelas dipilih
     public $selected_thn_ajaran, $selected_kelas;
 
-    public $nominal_spp;
+    public $nominal_spp, $total_terbayar = 0, $total_belum_terbayar = 0;
     public $thn_ajaran_awal, $thn_ajaran_akhir;
 
 
@@ -72,7 +72,30 @@ class TabelLaporanPerkelas extends Component
     public function getDataPembayaran($nisn)
     {
         $this->collectDataPembayaran($nisn);
+
         return $this->data_pembayaran;
+    }
+
+    public function getRekapPembayaran()
+    {
+        $this->total_terbayar = 0;
+        $this->total_belum_terbayar = 0;
+        foreach ($this->data_pembayaran as $pembayaran) {
+            if ($pembayaran->no_pembayaran) {
+                if ($pembayaran->status == "Success") {
+                    $this->total_terbayar += $pembayaran->tahunAjaran->jumlah_spp;
+                } else {
+                    $this->total_belum_terbayar += $pembayaran->tahunAjaran->jumlah_spp;
+                }
+            } else {
+                $this->total_belum_terbayar += $this->nominal_spp;
+            }
+        }
+
+        return [
+            "total_terbayar" => $this->total_terbayar,
+            "total_belum_terbayar" => $this->total_belum_terbayar
+        ];
     }
 
     private function collectDataSiswa()

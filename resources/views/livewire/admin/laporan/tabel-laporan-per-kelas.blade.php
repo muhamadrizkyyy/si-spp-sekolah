@@ -36,7 +36,7 @@
     </div>
 
     <div class="overflow-x-auto">
-        <table class="w-max min-w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+        <table class="w-max min-w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400"
             id="">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -79,6 +79,9 @@
                     <th scope="col" class="px-6 py-3 text-center">
                         Juni
                     </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Rekap
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -94,13 +97,30 @@
 
                                 {{-- Cari bulan yang sudah terbayar --}}
                                 @foreach ($this->getDataPembayaran($siswa->nisn) as $index => $pembayaran)
-                                    @if ($pembayaran->no_pembayaran != null)
+                                    @if ($pembayaran->no_pembayaran != null && $pembayaran->status == 'Success')
                                         <td class="px-6 py-4">
-                                            {{ $this->formatDate($pembayaran->tgl_bayar) }}
+                                            {{ $pembayaran->tahunAjaran->jumlah_spp }}
                                         </td>
                                     @else
                                         <td class="px-6 py-4 text-center">
                                             X
+                                        </td>
+                                    @endif
+                                    @if ($index == 11)
+                                        <?php $data = $this->getRekapPembayaran(); ?>
+                                        <td class="px-6 py-4 flex flex-col text-left">
+                                            <span>
+                                                Total Tagihan :
+                                                {{ number_format($data['total_terbayar'] + $data['total_belum_terbayar'], 0, ',', '.') }}
+                                            </span>
+                                            <span>
+                                                Total Terbayar :
+                                                {{ number_format($data['total_terbayar'], 0, ',', '.') }}
+                                            </span>
+                                            <span>
+                                                Total Belum Terbayar :
+                                                {{ number_format($data['total_belum_terbayar'], 0, ',', '.') }}
+                                            </span>
                                         </td>
                                     @endif
                                 @endforeach
@@ -108,14 +128,14 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="13" class="px-6 py-4 text-center bg-gray-200">
+                            <td colspan="14" class="px-6 py-4 text-center bg-gray-200">
                                 Tidak ada data
                             </td>
                         </tr>
                     @endif
                 @else
                     <tr>
-                        <td colspan="13" class="px-6 py-4 text-center bg-gray-200">
+                        <td colspan="14" class="px-6 py-4 text-center bg-gray-200">
                             Cari Siswa Berdasarkan Kelas
                         </td>
                     </tr>

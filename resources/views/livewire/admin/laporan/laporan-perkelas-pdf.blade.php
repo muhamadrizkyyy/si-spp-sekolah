@@ -47,20 +47,21 @@
     <table class="table data-table" style="width: 100%; border-collapse: collapse;">
         <thead style="background: #e0e0e0;">
             <tr>
-                <th scope="col" class="text-center" style="padding: 10px;">No.</th>
-                <th scope="col" style="padding: 10px; text-align: left; width: 40%;">Nama Siswa</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Juli</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Agustus</th>
-                <th scope="col" class="text-center" style="padding: 10px;">September</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Oktober</th>
-                <th scope="col" class="text-center" style="padding: 10px;">November</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Desember</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Januari</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Februari</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Maret</th>
-                <th scope="col" class="text-center" style="padding: 10px;">April</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Mei</th>
-                <th scope="col" class="text-center" style="padding: 10px;">Juni</th>
+                <th scope="col" class="text-center" style="padding: 5px;">No.</th>
+                <th scope="col" style="padding: 5px; text-align: left; width: 20%;">Nama Siswa</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Juli</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Agustus</th>
+                <th scope="col" class="text-center" style="padding: 5px;">September</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Oktober</th>
+                <th scope="col" class="text-center" style="padding: 5px;">November</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Desember</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Januari</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Februari</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Maret</th>
+                <th scope="col" class="text-center" style="padding: 5px;">April</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Mei</th>
+                <th scope="col" class="text-center" style="padding: 5px;">Juni</th>
+                <th scope="col" class="text-center" style="padding: 5px; width: 20%;">Rekap</th>
             </tr>
         </thead>
         <tbody>
@@ -76,12 +77,30 @@
                     {{-- Cari bulan yang sudah terbayar --}}
                     @foreach ($value['pembayaran'] as $index => $pembayaran)
                         <td class="text-center" style="padding: 10px;">
-                            @if ($pembayaran['no_pembayaran'] != null)
-                                {{ formatDate($pembayaran['tgl_bayar']) }}
+                            @if ($pembayaran['no_pembayaran'] != null && $pembayaran['status'] == 'Success')
+                                {{ $value['nominal_spp'] }}
                             @else
                                 X
                             @endif
                         </td>
+                        @if ($index == 11)
+                            <td class="text-left" style="display: flex; flex-direction: column; padding: 10px;">
+                                <span>
+                                    Total Tagihan :
+                                    {{ number_format($value['rekap_bayar']['total_terbayar'] + $value['rekap_bayar']['total_belum_terbayar'], 0, ',', '.') }}
+                                </span>
+                                <br>
+                                <span>
+                                    Total Terbayar :
+                                    {{ number_format($value['rekap_bayar']['total_terbayar'], 0, ',', '.') }}
+                                </span>
+                                <br>
+                                <span>
+                                    Total Belum Terbayar :
+                                    {{ number_format($value['rekap_bayar']['total_belum_terbayar'], 0, ',', '.') }}
+                                </span>
+                            </td>
+                        @endif
                     @endforeach
                 </tr>
             @endforeach
