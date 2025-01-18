@@ -19,6 +19,7 @@ Tata cara menjalankan program ini:
 9. Anda dapat menggunakan program ini dengan hak akses yang ada
 
 HAK AKSES SI SPP SEKOLAH
+
 **( ADMIN )**
 - Email : admin@gmail.com
 - Pass : admin@gmail.com
