@@ -3,9 +3,10 @@
 @section('content')
     <section class="photo-profile flex justify-center">
         <div
-            class="card inline-flex py-5 px-4 md:px-8 gap-x-3 md:gap-x-7 bg-gradient-to-r from-myOrange to-myYellowSand rounded-2xl">
-            <div class="foto bg-white">
-                <img src="" alt="foto siswa" class="aspect-square">
+            class="card inline-flex w-10/12 lg:w-[35%] py-5 px-4 md:px-8 gap-x-3 md:gap-x-7 bg-gradient-to-r from-myOrange to-myYellowSand rounded-2xl">
+            <div class="foto bg-white w-[25%] rounded-lg ">
+                <img src="{{ asset('storage/assets/bg/avatar.jpg') }}" alt="foto siswa"
+                    class="h-full aspect-[4/5] object-cover rounded-lg">
             </div>
             <div class="profile-singkat text-white">
                 <h4 class="font-bold text-md md:text-2xl">{{ $siswaLogin->nama }}</h4>
