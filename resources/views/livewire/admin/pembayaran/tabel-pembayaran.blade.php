@@ -149,10 +149,19 @@
                                 <td class="px-6 py-4">
                                     @if ($pembayaran->status == 'Failed')
                                         <div class="flex items-center justify-center">
-                                            <input id="checkbox-all-search" type="checkbox" value="{{ $indexBulan }}"
-                                                wire:model="pickBulan" wire:key="pickBulan-{{ $indexBulan }}"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                                            <input id="checkbox-all-search-{{ $indexBulan }}" type="checkbox"
+                                                value="{{ $indexBulan }}" wire:model="pickBulan"
+                                                wire:key="pickBulan-{{ $indexBulan }}"
+                                                class="w-4 h-4 hidden peer text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="checkbox-all-search-{{ $indexBulan }}"
+                                                class="text-white peer-checked:hidden bg-gradient-to-r from-myOrange to-myYellowSand hover:bg-gradient-to-br font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                Pilih
+                                            </label>
+
+                                            <label for="checkbox-all-search-{{ $indexBulan }}"
+                                                class="text-white hidden peer-checked:block bg-gradient-to-l from-myBlueOcean to-mySkyBlue hover:bg-gradient-to-br font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                Batal
+                                            </label>
                                         </div>
                                     @else
                                         <a href="{{ route('pembayaran.cetak', $pembayaran->no_pembayaran) }}"
@@ -179,10 +188,19 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-center">
-                                        <input id="checkbox-all-search" type="checkbox" value="{{ $indexBulan }}"
-                                            wire:model="pickBulan" wire:key="pickBulan-{{ $indexBulan }}"
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                                        <input id="checkbox-all-search-{{ $indexBulan }}" type="checkbox"
+                                            value="{{ $indexBulan }}" wire:model="pickBulan"
+                                            wire:key="pickBulan-{{ $indexBulan }}"
+                                            class="w-4 h-4 hidden peer text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="checkbox-all-search-{{ $indexBulan }}"
+                                            class="text-white peer-checked:hidden bg-gradient-to-r from-myOrange to-myYellowSand hover:bg-gradient-to-br font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            Pilih
+                                        </label>
+
+                                        <label for="checkbox-all-search-{{ $indexBulan }}"
+                                            class="text-white hidden peer-checked:block bg-gradient-to-l from-myBlueOcean to-mySkyBlue hover:bg-gradient-to-br font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            Batal
+                                        </label>
                                     </div>
                                 </td>
                             @endif
