@@ -1,7 +1,7 @@
 <nav aria-label="alternative nav">
-    <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 mt-12 md:relative z-10 w-full md:w-48 content-center">
-        <div
-            class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+    <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 mt-12 md:relative z-10 w-full md:w-52 content-center">
+        <div class="md:mt-12 md:w-52 md:h-full md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between"
+            style="overflow-y: auto">
             <ul class="list-reset flex flex-row md:flex-col md:pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
                 {{-- Dashboard --}}
                 <li class="mr-3 flex-1">
@@ -24,7 +24,7 @@
                 </li>
 
                 {{-- Datamaster --}}
-                <li>
+                <li class="mt-1.5">
                     <button type="button"
                         class="md:flex items-center hidden w-full p-2 text-base text-white transition duration-75 rounded-lg group border-b-2 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
