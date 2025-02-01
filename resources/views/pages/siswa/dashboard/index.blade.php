@@ -179,3 +179,22 @@
 
     </section>
 @endsection
+
+@section('script')
+    <script>
+        // Loader
+        document.addEventListener("DOMContentLoaded", function() {
+            const loader = document.getElementById('loader');
+
+            // Tampilkan loader saat memuat halaman
+            loader.classList.remove('hidden');
+
+            // Sembunyikan loader setelah halaman sepenuhnya dimuat
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 1000); // Delay 500ms sebelum menyembunyikan loader
+            });
+        });
+    </script>
+@endsection

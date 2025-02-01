@@ -19,10 +19,47 @@
 
     @yield('style')
 
+    <style>
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 12px;
+            /* Width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            /* Background of the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            /* Color of the scrollbar thumb */
+            border-radius: 10px;
+            /* Rounded corners for the thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+            /* Color of the scrollbar thumb on hover */
+        }
+    </style>
+
     @livewireStyles
 </head>
 
 <body>
+    {{-- Loader --}}
+    <div class="absolute z-[100]">
+        <div id="loader"
+            class="fixed inset-0 bg-gradient-to-r bg-myNavy flex justify-center items-center z-50 hidden">
+            {{-- /* From Uiverse.io by Javierrocadev */ --}}
+            <div class="flex flex-row gap-2">
+                <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.3s]"></div>
+                <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.1s]"></div>
+                <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:.3s]"></div>
+            </div>
+        </div>
+    </div>
 
     <main>
         @include('partials.siswa.navbar')
