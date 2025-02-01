@@ -7,13 +7,6 @@
         </div>
     </div>
 
-    <div class="flex justify-center">
-        <div
-            class="w-3/4 md:w-1/2 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:bg-gradient-to-br px-5 py-2.5 mt-6 text-center shadow-md rounded-full">
-            <h2 class="text-xl font-bold text-white">Selamat Datang {{ Auth::user()->nama }}</h2>
-        </div>
-    </div>
-
     <livewire:admin.dashboard.statistic />
 @endsection
 
