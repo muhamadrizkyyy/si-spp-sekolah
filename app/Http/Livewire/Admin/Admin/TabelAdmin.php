@@ -7,6 +7,16 @@ use Livewire\Component;
 
 class TabelAdmin extends Component
 {
+    public $listeners = ["deleteAct" => 'delete']; //property untuk menangkap event dari emit component lain / dari frontend (js) secara global
+
+    public function delete($value)
+    {
+        $admin = User::find($value);
+        if ($admin) {
+            $admin->delete();
+        }
+    }
+
     public function render()
     {
         $admin = User::all();

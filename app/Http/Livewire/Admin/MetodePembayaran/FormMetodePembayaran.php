@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\MetodePembayaran;
 
 use App\Models\MetodePembayaran;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -43,18 +44,22 @@ class FormMetodePembayaran extends Component
                 "keterangan" => "required"
             ]);
 
-            $payment_system = str_replace(" ", " ", $this->jenis_pembayaran);
+            if ($this->logo) {
+                $payment_system = str_replace(" ", " ", $this->jenis_pembayaran);
 
-            //simpan gambar di storage/app/public
-            $filename = $this->storeImg($this->logo, $payment_system);
+                //simpan gambar di storage/app/public
+                $filename = $this->storeImg($this->logo, $payment_system);
 
-            $validated["logo"] = $filename;
+                $validated["logo"] = $filename;
+            }
 
             //simpan data metode pembayaran di mysql
             MetodePembayaran::create($validated);
 
-            //clear al temporary file
-            $this->clearTemporaryFiles();
+            if ($this->logo) {
+                //clear al temporary file
+                $this->clearTemporaryFiles();
+            }
 
             return redirect()->route("metodePembayaran.index")->with("status", "success")->with("msg", "Data berhasil disimpan");
         } catch (\Throwable $th) {
@@ -82,10 +87,7 @@ class FormMetodePembayaran extends Component
                 $filename = $this->storeImg($this->logo, $payment_system);
 
                 // Hapus file logo lama (use storage:link yang dihapus file di folder storagenya)
-                $old_file_path = storage_path("app\public\assets\logo\\" . $this->old_logo);
-                if (file_exists($old_file_path)) {
-                    unlink($old_file_path);
-                }
+                Storage::delete("public/assets/pay-logo/" . $this->old_logo);
 
                 //clear al temporary file
                 $this->clearTemporaryFiles();

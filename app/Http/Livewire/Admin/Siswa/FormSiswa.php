@@ -52,14 +52,14 @@ class FormSiswa extends Component
         $this->tgl_lahir = $tanggal;
 
         $this->validate([
-            'nisn' => 'required|min:10|unique:siswa,nisn',
+            'nisn' => 'required|max:10|unique:siswa,nisn',
             'nama' => 'required',
             'gender' => 'required',
             'tgl_lahir' => 'required|date|date_format:Y-m-d',
             'alamat' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
-            'thn_ajaran' => 'required',
+            'thn_ajaran_masuk' => 'required',
         ]);
 
         //simpan data
@@ -71,8 +71,8 @@ class FormSiswa extends Component
             'alamat' => $this->alamat,
             'kelas_id' => $this->kelas,
             'jurusan_id' => $this->jurusan,
-            'thn_ajaran' => $this->thn_ajaran,
-            'thn_ajaran_masuk' => $this->thn_ajaran,
+            'thn_ajaran' => $this->thn_ajaran_masuk,
+            'thn_ajaran_masuk' => $this->thn_ajaran_masuk,
         ]);
 
         if ($siswa) {

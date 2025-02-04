@@ -151,6 +151,27 @@
 
     <script>
         $('#datatable').DataTable();
+
+        // Delete btn onclick
+        function deleteBtnAct(itemId) {
+            Swal.fire({
+                title: "Apakah kamu yakin ingin menghapus data ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Ya, dihapus",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Livewire.emit('deleteAct', itemId); // Panggil event Livewire
+                    Swal.fire({
+                        title: "Berhasil!",
+                        text: "Data berhasil dihapus!",
+                        icon: "success"
+                    });
+                }
+            });
+        }
     </script>
 
     @yield('script')

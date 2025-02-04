@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class TabelSiswa extends Component
 {
+    public $listeners = ["deleteAct" => 'delete']; //property untuk menangkap event dari emit component lain / dari frontend (js) secara global
+
     public function delete($id)
     {
         $siswa = Siswa::find($id);
