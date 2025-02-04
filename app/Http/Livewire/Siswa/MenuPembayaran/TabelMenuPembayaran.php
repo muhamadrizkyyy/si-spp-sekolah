@@ -28,9 +28,11 @@ class TabelMenuPembayaran extends Component
         $this->data_siswa = Siswa::where("nisn", $nisn)->first();
         $this->nisn = $this->data_siswa->nisn;
 
-        $selected_thn_ajaran = $this->data_siswa->thn_ajaran_masuk;
+        $thn_ajaran_masuk = $this->data_siswa->thn_ajaran_masuk;
+        $thn_ajaran_now = $this->data_siswa->thn_ajaran;
 
-        $this->data_thn_ajaran = TahunAjaran::where("thn_ajaran", ">=", $selected_thn_ajaran)->orderBy("thn_ajaran", "asc")->get();
+        $this->data_thn_ajaran = TahunAjaran::whereBetween("thn_ajaran", [$thn_ajaran_masuk, $thn_ajaran_now])->orderBy("thn_ajaran", "asc")->get();
+        // $this->data_thn_ajaran = TahunAjaran::where("thn_ajaran", ">=", $selected_thn_ajaran)->orderBy("thn_ajaran", "asc")->get();
 
         // $this->collectDataPembayaran($this->nisn);
     }
