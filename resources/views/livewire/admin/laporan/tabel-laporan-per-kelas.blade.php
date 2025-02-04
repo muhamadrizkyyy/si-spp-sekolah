@@ -109,18 +109,18 @@
                                     @if ($index == 11)
                                         <?php $data = $this->getRekapPembayaran(); ?>
                                         <td class="px-6 py-4 flex flex-col text-left">
-                                            <span>
+                                            {{-- <span>
                                                 Total Tagihan :
                                                 {{ number_format($data['total_terbayar'] + $data['total_belum_terbayar'], 0, ',', '.') }}
-                                            </span>
+                                            </span> --}}
                                             <span>
                                                 Total Terbayar :
                                                 {{ number_format($data['total_terbayar'], 0, ',', '.') }}
                                             </span>
-                                            <span>
+                                            {{-- <span>
                                                 Total Belum Terbayar :
                                                 {{ number_format($data['total_belum_terbayar'], 0, ',', '.') }}
-                                            </span>
+                                            </span> --}}
                                         </td>
                                     @endif
                                 @endforeach

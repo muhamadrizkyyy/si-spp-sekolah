@@ -18,6 +18,13 @@
             return Carbon::parse($date)->format('d/m/y');
         }
     @endphp
+
+    <style>
+        td,
+        th {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -84,21 +91,22 @@
                             @endif
                         </td>
                         @if ($index == 11)
-                            <td class="text-left" style="display: flex; flex-direction: column; padding: 10px;">
-                                <span>
+                            {{-- style="display: flex; flex-direction: column; padding: 10px;" --}}
+                            <td class="text-left">
+                                {{-- <span>
                                     Total Tagihan :
                                     {{ number_format($value['rekap_bayar']['total_terbayar'] + $value['rekap_bayar']['total_belum_terbayar'], 0, ',', '.') }}
-                                </span>
-                                <br>
+                                </span> --}}
+                                {{-- <br> --}}
                                 <span>
                                     Total Terbayar :
                                     {{ number_format($value['rekap_bayar']['total_terbayar'], 0, ',', '.') }}
                                 </span>
-                                <br>
-                                <span>
+                                {{-- <br> --}}
+                                {{-- <span>
                                     Total Belum Terbayar :
                                     {{ number_format($value['rekap_bayar']['total_belum_terbayar'], 0, ',', '.') }}
-                                </span>
+                                </span> --}}
                             </td>
                         @endif
                     @endforeach
