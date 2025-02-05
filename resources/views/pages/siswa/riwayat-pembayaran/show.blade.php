@@ -89,7 +89,7 @@
                                         Total Pembayaran
                                     </h3>
                                     <h2 class="text-2xl md:text-4xl font-bold text-white dark:text-white">
-                                        {{ number_format(150000, 0, ',', '.') }}
+                                        Rp. {{ number_format($pembayaran->total_bayar, 0, ',', '.') }}
                                     </h2>
                                 </div>
                                 <div class="metode-pembayaran">
