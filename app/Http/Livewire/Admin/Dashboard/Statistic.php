@@ -20,7 +20,7 @@ class Statistic extends Component
         $this->countAdmin = User::count();
 
         $this->bulanSekarang = now()->format('F Y');
-        $this->total_bayar = number_format(Pembayaran::whereMonth('created_at', now()->month)->sum('total_bayar'), 0, ",", ".");
+        $this->total_bayar = number_format(Pembayaran::where('status', 'Success')->whereMonth('tgl_bayar', now()->month)->sum('total_bayar'), 0, ",", ".");
     }
 
     public function render()
