@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DetailPembayaran;
 use App\Models\identitasWeb;
 use App\Models\Kelas;
 use App\Models\Pembayaran;
@@ -26,6 +27,12 @@ class LaporanController extends Controller
     {
         $logo = identitasWeb::first()->logo;
         return view('pages.admin.laporan.perkelas.index', ["pages" => $this->pages, "logo" => $logo]);
+    }
+
+    public function indexKeuangan()
+    {
+        $logo = identitasWeb::first()->logo;
+        return view('pages.admin.laporan.keuangan.index', ["pages" => $this->pages, "logo" => $logo]);
     }
 
     public function downloadLaporanPerSiswa()
@@ -107,6 +114,26 @@ class LaporanController extends Controller
         $pdf->setOption('isHtml5ParserEnabled', true);
         $pdf->setPaper([0, 0, 595.28, 1241.89], "landscape");
         $pdf->setOption('isPhpEnabled', true);
+        return $pdf->stream();
+    }
+
+    public function downloadLaporanKeuangan()
+    {
+        $data_pembayaran = session("data_pembayaran");
+        $identitas_web = identitasWeb::first();
+
+        //hitung grand total
+        $grand_total = 0;
+        foreach ($data_pembayaran as $key => $value) {
+            $grand_total += $value['total'];
+        }
+
+        $pdf = Pdf::loadView("livewire.admin.laporan.laporan-keuangan-pdf", compact("data_pembayaran", "grand_total", "identitas_web"));
+
+        $pdf->setOption('isHtml5ParserEnabled', true);
+        $pdf->setPaper("A4", "landscape");
+        $pdf->setOption('isPhpEnabled', true);
+
         return $pdf->stream();
     }
 

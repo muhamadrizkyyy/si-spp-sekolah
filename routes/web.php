@@ -84,6 +84,9 @@ Route::prefix("admin")->group(function () {
 
             Route::get("/perkelas", [LaporanController::class, "indexPerKelas"])->name("laporan-perkelas");
             Route::get("/perkelas/cetak", [LaporanController::class, "downloadLaporanPerKelas"])->name("laporan-perkelas.cetak");
+
+            Route::get("/keuangan", [LaporanController::class, "indexKeuangan"])->name("laporan-keuangan");
+            Route::get("/keuangan/cetak", [LaporanController::class, "downloadLaporanKeuangan"])->name("laporan-keuangan.cetak");
         });
         Route::get('/logout', [Login::class, "logout"])->name("logout");
     });
