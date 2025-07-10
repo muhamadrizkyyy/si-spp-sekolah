@@ -4,7 +4,7 @@ Sistem Informasi ini terdiri dari 2 user side yakni sebagai admin dan siswa, dim
 Yang diperlukan untuk menjalankan program ini:
 - Laravel 8
 - PHP 7.4 / 8.0 (lebih disarankan)
-- ngrok 3.19
+- ngrok / cloudflared / etc
 - XAMPP / Laragon (lebih disarankan)
 
 Tata cara menjalankan program ini:
