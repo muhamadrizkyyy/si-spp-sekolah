@@ -1,4 +1,4 @@
-<img style="width: 70%;" alt="Image" src="https://github.com/user-attachments/assets/fc46c018-b73c-444a-b95f-5af6661d2988" />
+<img style="width: 70%;" alt="Image" src="https://github.com/user-attachments/assets/9c835913-8293-4c31-bb65-be0484c3454f" />
 
 | Sistem Informasi Pembayaran SPP - Tugas Akhir SMK Negeri 2 Mojokerto |
 Sistem Informasi ini terdiri dari 2 user side yakni sebagai admin dan siswa, dimana sebagai admin dapat mengelola data identitas web, data admin itu sendiri, data kelas, jurusan, tahun ajaran, metode pembayaran dan juga data siswa. selain itu admin juga dapat memanajemen kenaikan kelas, pembayaran spp dan juga laporan per siswa dan per kelas sesuai dengan tahun ajaran. di sisi siswa hanya akan dapat melakukan pembayaran sesuai dengan nisn dan tanggal lahir yang telah didaftarkan oleh admin.
