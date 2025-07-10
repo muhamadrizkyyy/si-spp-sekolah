@@ -10,13 +10,12 @@ Yang diperlukan untuk menjalankan program ini:
 Tata cara menjalankan program ini:
 1. Download dalam bentuk zip / clone project github ini ke local anda
 2. Pastikan anda menginstall seluruh komponen yang dibutuhkan untuk menjalankan project ini
-3. Import Database nya terlebih dahulu
-4. Atur ENV sesuai dengan konfigurasi anda
-5. Jalankan ngrok untuk mendapatkan url yang nantinya kita perlukan
-6. Salin URL Ngrok dan tempel di env anda
-7. Lalu jalankan migrate beserta seednya
-8. Kemudian jalankan php artisan serve
-9. Anda dapat menggunakan program ini dengan hak akses yang ada
+3. Atur ENV sesuai dengan konfigurasi anda
+4. jalankan migrate beserta seednya
+5. Jalankan ngrok / penyedia public url lain nya untuk mendapatkan url yang nantinya kita perlukan
+6. Salin public URL dan tempel di env anda
+7. Kemudian jalankan php artisan serve
+8. Anda dapat menggunakan program ini dengan hak akses yang ada
 
 HAK AKSES SI SPP SEKOLAH
 
